@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Sedjoek Backend',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Sedjoek</b> CMS',
+    'logo_img' => 'vendor/adminlte/dist/img/sedjoek_be_icon.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Sedjoek Backend',
 
     /*
     |--------------------------------------------------------------------------
@@ -288,77 +288,151 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Dashboard',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Database Sedjoek'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text' => 'Database User',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
+                    'text' => 'Hak Akses',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-key',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
-                            'url'  => '#',
+                            'text' => 'Super Admin',
+                            'url' => '#',
+                            'icon' => 'fas fa-fw fa-key',
                         ],
                         [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
+                            'text' => 'Content Admin',
+                            'url' => '#',
+                            'icon' => 'fas fa-fw fa-key',
+                        ],
+                        [
+                            'text' => 'Marketing Admin',
+                            'url' => '#',
+                            'icon' => 'fas fa-fw fa-key',
+                        ],
+                        [
+                            'text' => 'Accounting Admin',
+                            'url' => '#',
+                            'icon' => 'fas fa-fw fa-key',
+                        ],
+                        [
+                            'text' => 'Warehouse Admin',
+                            'url' => '#',
+                            'icon' => 'fas fa-fw fa-key',
                         ],
                     ],
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'User',
+                    'url' => 'users',
+                    'icon' => 'fas fa-fw fa-user'
+                ],
+                [
+                    'text' => 'User Detail',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-user'
                 ],
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Database Product',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Brand Products',
+                    'url' => 'brands',
+                    'icon' => 'fas fa-fw fa-folder-open'
+                ],
+                [
+                    'text' => 'Category Product',
+                    'url' => 'categories',
+                    'icon' => 'fas fa-fw fa-folder-open'
+                ],
+                [
+                    'text' => 'All Product',
+                    'url' => 'products',
+                    'icon' => 'fas fa-fw fa-folder-open'
+                ],
+            ],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text' => 'Database Transaction',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Transaction',
+                    'url'  => 'admin/settings',
+                    'icon' => 'fas fa-fw fa-credit-card',
+                ],
+                [
+                    'text' => 'Transaction Detail',
+                    'url'  => 'admin/settings',
+                    'icon' => 'fas fa-fw fa-credit-card',
+                ]
+            ],
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Database Content',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Artikel',
+                    'url'  => 'articles',
+                    'icon' => 'fas fa-fw fa-newspaper',
+                ],
+                [
+                    'text' => 'Promo',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-gift',
+                ],
+            ],
         ],
+        [
+            'text' => 'Marketing Content',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Coupon',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-gift',
+                ],
+                [
+                    'text' => 'Refferals',
+                    'url'  => 'article',
+                    'icon' => 'fas fa-fw fa-handshake',
+                ],
+            ],
+        ],
+        // ['header' => 'labels'],
+        // [
+        //     'text'       => 'important',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*
