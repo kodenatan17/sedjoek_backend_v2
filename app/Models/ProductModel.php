@@ -22,10 +22,10 @@ class ProductModel extends Model
     ];
 
     public function category(){
-        $this->belongsTo(CategoryModel::class, 'categories_id','id');
+        return $this->belongsTo(CategoryModel::class, 'categories_id','id');
     }
 
     public function brand(){
-        $this->belongsTo(BrandModel::class, 'brand_id','id');
+        return $this->belongsTo(BrandModel::class, 'brand_id','id');
     }
 }

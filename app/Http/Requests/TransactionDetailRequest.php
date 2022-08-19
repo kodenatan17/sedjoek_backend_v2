@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionDetailRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class TransactionDetailRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,10 @@ class TransactionDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'users_id' => 'required|exists:users,id',
+            'products_id' => 'required|exists:products,id',
+            'transactions_id' => 'required|exists:transactions,id',
+            'quantity' => 'required',
         ];
     }
 }

@@ -23,8 +23,11 @@ class TransactionModel extends Model
         'status',
     ];
 
-    public function transaction()
-    {
-        $this->hasMany(TransactionController::class, 'transaction_id', 'id');
+    public function transaction(){
+        $this->hasMany(TransactionPeriodeModel::class, 'transaction_id', 'id');
+    }
+
+    public function user(){
+        $this->belongsTo(User::class, 'users_id','id');
     }
 }

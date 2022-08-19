@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
+use App\Models\TransactionModel;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -13,7 +15,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = TransactionModel::all();
+
+        return view('transactions.index', ['transaction' => $transaction]);
     }
 
     /**
@@ -23,7 +27,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transactions.create');
     }
 
     /**
@@ -32,9 +36,11 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        $array = $request->all();
+        $transaction = TransactionModel::create($array);
+        return redirect()->route('transactions.index')->with('success_message', 'Berhasil Menambahkan Transaksi Baru');
     }
 
     /**
@@ -56,7 +62,9 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transaction = TransactionModel::find($id);
+        if (!$transaction) return redirect()->route('transactions.index')->with('error_message', 'Transaksi dengan id' . $id . 'tidak ditemukan');
+        return view('transactions.edit', ['transaction' => $transaction]);
     }
 
     /**
@@ -66,9 +74,11 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
-        //
+        $transaction = TransactionModel::find($id)->all();
+        $transaction->save();
+        return redirect()->route('transactions.index')->with('success_message', 'Berhasil mengubah Transaksi');
     }
 
     /**
@@ -77,8 +87,10 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TransactionRequest $request, $id)
     {
-        //
+        $transaction = TransactionModel::find($id);
+        if ($transaction) $transaction->delete();
+        return redirect()->route('transactions.index')->with('success_message', 'Berhasil menghapus Transaksi');
     }
 }

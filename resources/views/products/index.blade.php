@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title','List Transaksi')
+@section('title','List Product')
 
 @section('content_header')
-<h1 class="m-0 text-dark">List Transaksi</h1>
+<h1 class="m-0 text-dark">List Product</h1>
 @stop
 
 @section('content')
@@ -11,37 +11,37 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
+                <a href="{{route('products.create')}}" class="btn btn-primary mb-2">
                     Tambah
                 </a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>User</th>
-                            <th>Alamat</th>
-                            <th>Total Harga</th>
-                            <th>Harga Pengiriman</th>
-                            <th>Status</th>
-                            <th>Pembayaran</th>
+                            <th>Nama</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Tags</th>
+                            <th>Kategori</th>
+                            <th>Brand</th>
                             <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($transaction as $key => $transaction )
+                        @foreach ($product as $key => $product )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$transaction->user.name}}</td>
-                            <td>{{$transaction->address}}</td>
-                            <td>{{$transaction->total_price}}</td>
-                            <td>{{$tranasacion->shipping_price}}</td>
-                            <td>{{$tranasacion->status}}</td>
-                            <td>{{$tranasacion->payment}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->description}}</td>
+                            <td>{{$product->tags}}</td>
+                            <td>{{$product->category.name}}</td>
+                            <td>{{$product->brand.name}}</td>
                             <td>
-                                <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
+                                <a href="{{route('products.edit', $product)}}" class="btn btn-primary btn-xs">
                                     Edit
                                 </a>
-                                <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                <a href="{{route('products.destroy', $product)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                     Hapus
                                 </a>
                             </td>
