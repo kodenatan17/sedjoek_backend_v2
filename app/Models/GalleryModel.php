@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\ProductModel;
+use Illuminate\Support\Facades\Storage;
 
-class BrandModel extends Model
+class GalleryModel extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'brand_categories';
-
-    protected $primaryKey = 'id';
+    protected $table = 'product_galleries';
     
     protected $fillable = [
-        'name',
+        'products_id',
+        'url',
     ];
 
-    public function brands(){
-        return $this->hasMany(ProductModel::class, 'id', 'brand_id'); 
+    public function getUrlAttributes($url){
+        return config('app.url') . Storage::url($url);
     }
+
 }

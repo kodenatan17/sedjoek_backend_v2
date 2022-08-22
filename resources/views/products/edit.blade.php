@@ -40,7 +40,7 @@
                         <label for="exampleInputName">Kategori AC</label>
                         <select name="categories_id" class="form-controller @error('categories_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>    
-                            @foreach ($categories as $category)
+                            @foreach ($category as $category)
                             <option value= "{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>

@@ -13,11 +13,13 @@ class CategoryModel extends Model
 
     protected $table = 'product_categories';
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
     ];
 
     public function products(){
-        return $this->belongsToMany(ProductModel::class, 'id', 'categories_id'); 
+        return $this->hasMany(ProductModel::class, 'id', 'categories_id'); 
     }
 }

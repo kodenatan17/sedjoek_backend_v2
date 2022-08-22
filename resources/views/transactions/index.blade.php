@@ -31,7 +31,7 @@
                         @foreach ($transaction as $key => $transaction )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$transaction->user.name}}</td>
+                            <td>{{$transaction->user['name']}}</td>
                             <td>{{$transaction->address}}</td>
                             <td>{{$transaction->total_price}}</td>
                             <td>{{$tranasacion->shipping_price}}</td>

@@ -37,7 +37,7 @@
                         @foreach($user_details as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$user->users_id}}</td>
+                                <td>{{$user->user['nama']}}</td>
                                 <td>{{$user->name_full}}</td>
                                 <td>{{$user->ktp}}</td>
                                 <td>{{$user->ktp_address}}</td>

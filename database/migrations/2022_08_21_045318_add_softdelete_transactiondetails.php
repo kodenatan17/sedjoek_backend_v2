@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-
-            // Change to UnsignedInteger
-            $table->unsignedInteger('categories_id')->change();
-
-            // Updating relationships
-            $table->foreign('categories_id')->references('id')->on('product_categories')->change();
+        Schema::table('transaction_details', function($table){
+            $table->softDeletes();
         });
     }
 
@@ -30,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
-            
+        Schema::table('transaction_details', function($table){
+            $table->dropIfExists('user_detail');
         });
     }
 };

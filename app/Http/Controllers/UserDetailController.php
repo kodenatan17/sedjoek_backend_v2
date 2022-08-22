@@ -18,7 +18,7 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        $user_details = UserDetailModel::all();
+        $user_details = UserDetailModel::with('user')->get();
 
         return view('user_details.index', ['user_details' => $user_details]);
     }

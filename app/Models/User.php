@@ -56,4 +56,8 @@ class User extends Authenticatable
     {
         return 'profile/username';
     }
+
+    public function user_details(){
+        return $this->hasMany(UserDetailModel::class, 'users_id','id');
+    }
 }

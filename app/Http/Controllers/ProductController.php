@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\BrandModel;
 use App\Models\ProductModel;
+use app\Models\CategoryModel;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,8 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = ProductModel::with('category','brand') ->get();
-        return view('products.index', compact('product'));
+        $product = ProductModel::with('category','brand')->get();
+        return view('products.index', ['product' => $product]);
     }
 
     /**
@@ -27,8 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = ProductModel::all();
+        $categories = CategoryModel::all();
         $brand = BrandModel::all();
+        $test = compact('categories','brand');
+        dd($test);
         return view('products.create', compact('categories', 'brand'));
     }
 

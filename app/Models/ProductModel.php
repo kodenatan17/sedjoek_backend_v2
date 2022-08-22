@@ -28,4 +28,12 @@ class ProductModel extends Model
     public function brand(){
         return $this->belongsTo(BrandModel::class, 'brand_id','id');
     }
+
+    public function galleries(){
+        return $this->hasMany(GalleryModel::class, 'product_id', 'id');
+    }
+
+    // public function transactiondetails(){
+    //     return $this->hasMany(TransactionDetailModel::class, 'product_id','id');
+    // }
 }

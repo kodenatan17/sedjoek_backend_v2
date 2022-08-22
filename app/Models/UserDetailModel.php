@@ -12,8 +12,11 @@ class UserDetailModel extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'user_detail';
+
     protected $fillable = [
         'name_full',
+        'users_id',
         'ktp',
         'ktp_address',
         'home_address',
@@ -31,6 +34,6 @@ class UserDetailModel extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class, 'users_id','id');
+        return $this->belongsTo(User::class, 'users_id','id');
     }
 }

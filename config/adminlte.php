@@ -339,7 +339,7 @@ return [
                 ],
                 [
                     'text' => 'User Detail',
-                    'url' => '#',
+                    'url' => 'user_details',
                     'icon' => 'fas fa-fw fa-user'
                 ],
             ],
@@ -373,12 +373,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Transaction',
-                    'url'  => 'admin/settings',
+                    'url'  => 'transactions',
                     'icon' => 'fas fa-fw fa-credit-card',
                 ],
                 [
                     'text' => 'Transaction Detail',
-                    'url'  => 'admin/settings',
+                    'url'  => 'transaction_details',
                     'icon' => 'fas fa-fw fa-credit-card',
                 ]
             ],
@@ -401,7 +401,7 @@ return [
             ],
         ],
         [
-            'text' => 'Marketing Content',
+            'text' => 'Database Marketing',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-database',
             'submenu' => [
@@ -414,6 +414,28 @@ return [
                     'text' => 'Refferals',
                     'url'  => 'article',
                     'icon' => 'fas fa-fw fa-handshake',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Database Warehouse',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'List Stock',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-box',
+                ],
+                [
+                    'text' => 'List Pengiriman',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-paper-plane',
+                ],
+                [
+                    'text' => 'List Penerimaan',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-inbox',
                 ],
             ],
         ],

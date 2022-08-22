@@ -35,8 +35,8 @@
                             <td>{{$product->price}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->tags}}</td>
-                            <td>{{$product->category.name}}</td>
-                            <td>{{$product->brand.name}}</td>
+                            <td>{{$product->category['name']}}</td>
+                            <td>{{$product->brand['name']}}</td>
                             <td>
                                 <a href="{{route('products.edit', $product)}}" class="btn btn-primary btn-xs">
                                     Edit
