@@ -4,7 +4,7 @@
     <h1 class="m-0 text-dark">Edit User Detail</h1>
 @stop
 @section('content')
-    <form action="{{route('user_details.update', $user)}}" method="post">
+    <form action="{{route('user_details.update', $user)}}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
     <div class="row">

@@ -30,8 +30,6 @@ class ProductController extends Controller
     {
         $categories = CategoryModel::all();
         $brand = BrandModel::all();
-        $test = compact('categories','brand');
-        dd($test);
         return view('products.create', compact('categories', 'brand'));
     }
 

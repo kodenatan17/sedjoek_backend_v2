@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionPeriodeRequest;
+use App\Models\TransactionDetailModel;
+use App\Models\TransactionPeriodeModel;
 use Illuminate\Http\Request;
 
 class PeriodeController extends Controller
@@ -13,7 +16,8 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        //
+        $periode = TransactionPeriodeModel::with('transaction_details')->get();
+        return view('transaction_periodes.index', ['periode' => $periode]);
     }
 
     /**
@@ -23,7 +27,8 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        //
+        $transaction_details = TransactionDetailModel::all();
+        return view('transaction_periodes.create', compact('transaction_details'));
     }
 
     /**
@@ -32,9 +37,11 @@ class PeriodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionPeriodeRequest $request)
     {
-        //
+        $array = $request->all();
+        $periode = TransactionPeriodeModel::create($array);
+        return redirect()->route('transaction_periodes.index')->with('success_message', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +63,9 @@ class PeriodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $periode = TransactionPeriodeModel::find($id);
+        if (!$periode) return redirect()->route('transaction_periodes.index')->with('error_message', 'Periode Transaksi dengan id ' . $id . 'tidak ditemukan');
+        return view('transaction_periodes.index', ['periode' => $periode]);
     }
 
     /**
@@ -66,9 +75,11 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionPeriodeRequest $request, $id)
     {
-        //
+        $periode = TransactionPeriodeModel::find($id)->all();
+        $periode->save();
+        return redirect()->route('transaction_periodes.index')->with('success_message', 'Data dengan id' . $id . 'berhasil diperbaharui');
     }
 
     /**
@@ -77,8 +88,10 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TransactionPeriodeRequest $request, $id)
     {
-        //
+        $periode = TransactionPeriodeModel::find($id);
+        if ($periode) $periode->delete();
+        return redirect()->route('transaction_periodes.index')->with('success_message', 'Data dengan id' . $id . ' berhasil dihapus');
     }
 }

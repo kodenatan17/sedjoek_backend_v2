@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\API\TransactionPeriodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RefferalController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
@@ -44,3 +48,8 @@ Route::resource('transactions', TransactionController::class)->middleware('auth'
 Route::resource('transaction_details', TransactionDetailController::class)->middleware('auth');
 Route::resource('coupons', CouponController::class)->middleware('auth');
 Route::resource('refferals', RefferalController::class)->middleware('auth');
+Route::resource('events', EventController::class)->middleware('auth');
+Route::resource('promos', PromoController::class)->middleware('auth');
+Route::resource('transaction_periodes', TransactionPeriodeController::class)->middleware('auth');
+Route::resource('banners', BannerController::class)->middleware('auth');
+Route::resource('events', EventController::class)->middleware('auth');

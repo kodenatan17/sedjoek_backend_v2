@@ -4,7 +4,7 @@
 <h1 class="m-0 text-dark">Edit Artikel</h1>
 @stop
 @section('content')
-    <form action="{{route('article.update', $article)}}" method="post">
+    <form action="{{route('articles.update', $article)}}" method="post">
     @method('PUT')
     @csrf
     <div class="row">

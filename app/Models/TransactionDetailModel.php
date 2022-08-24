@@ -22,14 +22,21 @@ class TransactionDetailModel extends Model
 
     public function transaction()
     {
-        $this->belongsTo(TransactionModel::class, 'transaction_details_id', 'id');
+        return $this->belongsTo(TransactionModel::class, 'transaction_details_id', 'id');
     }
 
-    public function user(){
-        $this->belongsTo(User::class, 'users_id','id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
-    public function product(){
-        $this->belongsTo(ProductModel::class, 'products_id','id');
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class, 'products_id', 'id');
+    }
+
+    public function periodes()
+    {
+        return $this->hasMany(TransactionPeriodeModel::class, 'transaction_details_id', 'id');
     }
 }

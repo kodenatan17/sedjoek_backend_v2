@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CouponModel extends Model
+class EventModel extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'coupons';
+    protected $table= 'events';
 
+    protected $fillable = [
+        'title',
+        'content',
+        'url',
+        'created_by',
+        'urlImages',
+    ];
 }

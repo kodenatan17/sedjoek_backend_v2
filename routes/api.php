@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\BannerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\BrandProductController;
 use App\Http\Controllers\API\CouponController;
+use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\PromoController;
 use App\Http\Controllers\API\RefferalController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
@@ -25,6 +28,21 @@ use App\Http\Controllers\API\UserDetailController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+//Events API
+Route::controller(EventController::class)->group(function (){
+    Route::get('/events','all');
+});
+
+//Promos API
+Route::controller(PromoController::class)->group(function(){
+    Route::get('/promos','all');
+});
+
+//Banner API
+Route::controller(BannerController::class)->group(function(){
+    Route::get('/banners','all');
 });
 
 //Refferals API

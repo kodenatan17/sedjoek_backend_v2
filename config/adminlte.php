@@ -395,8 +395,18 @@ return [
                 ],
                 [
                     'text' => 'Promo',
-                    'url'  => '#',
+                    'url'  => 'promos',
                     'icon' => 'fas fa-fw fa-gift',
+                ],
+                [
+                    'text' => 'Event',
+                    'url'  => 'events',
+                    'icon' => 'fas fa-fw fa-share',
+                ],
+                [
+                    'text' => 'Banner',
+                    'url'  => 'banners',
+                    'icon' => 'fas fa-fw fa-images',
                 ],
             ],
         ],

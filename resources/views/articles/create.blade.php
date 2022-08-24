@@ -4,7 +4,7 @@
 <h1 class="m-0 text-dark">Tambah Artikel</h1>
 @stop
 @section('content')
-<form action="{{route('article.store')}}" method="post">
+<form action="{{route('articles.store')}}" method="post">
     @csrf
     <div class="row">
         <div class="col-12">
