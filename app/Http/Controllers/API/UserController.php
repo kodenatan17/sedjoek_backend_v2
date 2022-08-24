@@ -111,12 +111,12 @@ class UserController extends Controller
             ]);
         }
 
-        // $data = $request->all();
+        $data = $request->all();
 
-        // $user = Auth::user();
-        // $user->update($data);
+        $user = Auth::user();
+        $user->update($data);
 
-        // return ResponseFormatter::success($user, 'Profile Updated');
+        return ResponseFormatter::success($user, 'Profile Updated');
 
     }
 
