@@ -11,9 +11,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
-                    Tambah
-                </a>
+                @if(Auth::user()->roles == "ADMIN")
+                    <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
+                        Tambah
+                    </a>
+                @endif
+                @if(Auth::user()->roles == "ACCOUNTING ADMIN")
+                    <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
+                        Tambah
+                    </a>
+                @endif
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>
                         <tr>
@@ -38,12 +45,22 @@
                             <td>{{$tranasacion->status}}</td>
                             <td>{{$tranasacion->payment}}</td>
                             <td>
-                                <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
-                                    Edit
-                                </a>
-                                <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                    Hapus
-                                </a>
+                                @if(Auth::user()->roles == "ADMIN")
+                                    <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
+                                        Edit
+                                    </a>
+                                    <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                        Hapus
+                                    </a>
+                                @endif
+                                @if(Auth::user()->roles == "ACCOUNTING ADMIN")
+                                    <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
+                                        Edit
+                                    </a>
+                                    <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                        Hapus
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Gate::define('articles', function ($user) {
+            if ($user->roles == '1') {
+                return true;
+            }
+            return false;
+        });
     }
 }

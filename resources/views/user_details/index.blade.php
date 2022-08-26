@@ -11,9 +11,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{route('user_details.create')}}" class="btn btn-primary mb-2">
-                        Tambah
-                    </a>
+                    @if(Auth::user()->roles == "ADMIN")
+                        <a href="{{route('user_details.create')}}" class="btn btn-primary mb-2">
+                            Tambah
+                        </a>
+                    @endif
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                         <tr>
@@ -31,6 +33,9 @@
                             <th>Alamat Darurat</th>
                             <th>KTP</th>
                             <th>KK</th>
+                            @if(Auth::user()->roles == "ADMIN")
+                                <th>Option</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -50,14 +55,16 @@
                                 <td>{{$user->emergency_address}}</td>
                                 <td><img src = "/temp_ktp/ {{$user->image_ktp}}" width="100px"></td>
                                 <td><img src = "/temp_kk/ {{$user->image_kk}}" width="100px"></td>
-                                <td>
-                                    <a href="{{route('user_details.edit', $user)}}" class="btn btn-primary btn-xs">
-                                        Edit
-                                    </a>
-                                    <a href="{{route('user_details.destroy', $user)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
-                                </td>
+                                @if(Auth::user()->roles == "ADMIN")
+                                    <td>
+                                        <a href="{{route('user_details.edit', $user)}}" class="btn btn-primary btn-xs">
+                                            Edit
+                                        </a>
+                                        <a href="{{route('user_details.destroy', $user)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                            Delete
+                                        </a>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

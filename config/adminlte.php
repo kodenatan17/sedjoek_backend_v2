@@ -370,6 +370,7 @@ return [
             'text' => 'Database Transaction',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-database',
+            'can'  => '',
             'submenu' => [
                 [
                     'text' => 'Transaction',
@@ -387,6 +388,7 @@ return [
             'text' => 'Database Content',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-database',
+            'can'  => 'articles',
             'submenu' => [
                 [
                     'text' => 'Artikel',
@@ -417,12 +419,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Coupon',
-                    'url'  => '#',
+                    'url'  => 'coupons',
                     'icon' => 'fas fa-fw fa-gift',
                 ],
                 [
                     'text' => 'Refferals',
-                    'url'  => 'article',
+                    'url'  => 'articles',
                     'icon' => 'fas fa-fw fa-handshake',
                 ],
             ],

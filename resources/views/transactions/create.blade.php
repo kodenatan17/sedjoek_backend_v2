@@ -15,7 +15,7 @@
                         <select name="users_id" class="form-controller @error('users_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
                             @foreach ($users as $user)
-                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
