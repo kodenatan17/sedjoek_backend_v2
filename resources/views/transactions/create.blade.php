@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputName">Nama User</label>
-                        <select name="users_id" class="form-controller @error('users_id') is-invalid @enderror" id="exampleInputName">
+                        <select name="users_id" class="form-control @error('users_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Status Transaksi</label>
-                        <select name="status" class="form-controller @error('status') is-invalid @enderror" id="exampleInputName">
+                        <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
                             <option value="{{old('status')}}">SHIPPED</option>
                             <option value="{{old('status')}}">SHIPPING</option>

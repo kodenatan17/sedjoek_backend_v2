@@ -388,7 +388,7 @@ return [
             'text' => 'Database Content',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-database',
-            'can'  => 'articles',
+            'can'  => '',
             'submenu' => [
                 [
                     'text' => 'Artikel',
@@ -424,7 +424,7 @@ return [
                 ],
                 [
                     'text' => 'Refferals',
-                    'url'  => 'articles',
+                    'url'  => '',
                     'icon' => 'fas fa-fw fa-handshake',
                 ],
             ],

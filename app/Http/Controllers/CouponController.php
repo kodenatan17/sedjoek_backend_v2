@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CouponModel;
-use App\Models\User;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -26,8 +26,8 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('coupons.create', compact('users'));
+        $products = ProductModel::all();
+        return view('coupons.create', compact('products'));
     }
 
     /**

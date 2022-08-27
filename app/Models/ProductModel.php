@@ -33,6 +33,10 @@ class ProductModel extends Model
         return $this->hasMany(GalleryModel::class, 'product_id', 'id');
     }
 
+    public function coupon(){
+        return $this->hasMany(CouponModel::class, 'product_id', 'id');
+    }
+
     // public function transactiondetails(){
     //     return $this->hasMany(TransactionDetailModel::class, 'product_id','id');
     // }

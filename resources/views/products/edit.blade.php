@@ -23,12 +23,12 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Harga Product</label>
-                        <textarea class="form-control @error('description') is-invalid @enderror" id="exampleInputName" placeholder="Deskripsi Produk" name="description" value="{{$product->description ?? old('description')}}" rows="4">
+                        <input class="form-control @error('description') is-invalid @enderror" id="exampleInputName" placeholder="Deskripsi Produk" name="description" value="{{$product->description ?? old('description')}}" rows="4">
                         @error('description') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Tags Product</label>
-                        <select name="tags" class="form-controller @error('tags') is-invalid @enderror" id="exampleInputName">
+                        <select name="tags" class="form-control @error('tags') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
                             <option value="{{$product->tags ?? old('tags')}}">Promo</option>
                             <option value="{{$product->tags ?? old('tags')}}">New Arrival</option>
@@ -38,8 +38,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Kategori AC</label>
-                        <select name="categories_id" class="form-controller @error('categories_id') is-invalid @enderror" id="exampleInputName">
-                            <option disabled>-----</option>    
+                        <select name="categories_id" class="form-control @error('categories_id') is-invalid @enderror" id="exampleInputName">
+                            <option disabled>-----</option>
                             @foreach ($category as $category)
                             <option value= "{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -48,8 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Brand AC</label>
-                        <select name="brand_id" class="form-controller @error('brand_id') is-invalid @enderror" id="exampleInputName">
-                            <option disabled>------</option>    
+                        <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror" id="exampleInputName">
+                            <option disabled>------</option>
                             @foreach ($brand as $brand)
                             <option value= "{{$brand->id}}">{{$brand->name}}</option>
                             @endforeach

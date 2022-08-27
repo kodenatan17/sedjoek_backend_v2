@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\ArticleModel;
+use App\Models\ProductModel;
+use Alert;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+     /** @var  CouponRepository */
+     private $couponRepository;
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +32,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $products = ProductModel::all();
+        return view('articles.create', compact('products'));
     }
 
     /**
@@ -43,7 +48,7 @@ class ArticleController extends Controller
             'title', 'content', 'created_by', 'type', 'created_at'
         ]);
         $article = ArticleModel::create($array);
-        return redirect()->route('article.index')->with('success_message', 'Berhasil Menambahkan Article Baru');
+        return redirect()->route('articles.index')->with('success_message', 'Berhasil Menambahkan Article Baru');
     }
 
     /**
@@ -99,5 +104,19 @@ class ArticleController extends Controller
         $article = ArticleModel::find($id);
         if ($article) $article->delete();
         return redirect()->route('articles.index')->with('success_message', 'Berhasil menghapus artikel');
+        // $article->delete();
+        // $data = ArticleModel::findOrFail($id);
+        // if($data->delete()){
+        //     Alert::success('success', 'Data telah berhasil dihapus');
+        //     return redirect()->route('articles.index');
+        // }
+        // Alert::error('faill', 'Data telah gagal dihapus');
+        // return redirect()->back();
+
+        // DB::table('articles')->where('id', $id)->delete();
+
+        // return redirect()->route('articles.index')
+        //                 ->with('success','articles deleted successfully');
     }
+
 }

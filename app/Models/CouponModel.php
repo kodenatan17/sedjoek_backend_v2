@@ -25,4 +25,8 @@ class CouponModel extends Model
         'status'
     ];
 
+    public function product(){
+        return $this->belongsTo(ProductModel::class, 'coupon_code', 'id');
+    }
+
 }
