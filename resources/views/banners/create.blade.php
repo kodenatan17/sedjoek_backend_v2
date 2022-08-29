@@ -4,7 +4,7 @@
 <h1 class="m-0 text-dark">Tambah Banner</h1>
 @stop
 @section('content')
-<form action="{{route('banners.store')}}" method="post">
+<form action="{{route('banners.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">

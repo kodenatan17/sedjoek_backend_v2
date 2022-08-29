@@ -41,6 +41,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function(){
     Route::resource('articles', ArticleController::class);
     Route::resource('brands', BrandController::class);
+    Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('user_details', UserDetailController::class);

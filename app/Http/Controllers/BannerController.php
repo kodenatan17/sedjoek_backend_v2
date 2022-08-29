@@ -39,8 +39,11 @@ class BannerController extends Controller
     public function store(BannerRequest $request)
     {
         $array = $request->only([
-            'urlImages'
+            'urlImages' => 'image|file|max:1024'
         ]);
+        if($request->file('urlImages')){
+            $array['urlImages'] = $request->file('urlImages')->store('post-images');
+        }
         $banner = BannerModel::create($array);
         return redirect()->route('banners.index')->with('success_message', 'Data Banner berhasil ditambahkan');
     }
@@ -80,6 +83,9 @@ class BannerController extends Controller
     {
         $banner = BannerModel::find($id);
         $banner->urlImages = $request->urlImages;
+        if($request->file('urlImages')){
+            $banner['urlImages'] = $request->file('urlImages')->store('post-images');
+        }
         $banner->save();
         return redirect()->route('banners.index')->with('success_message', 'Berhasil mengubah Banner');
     }
@@ -90,10 +96,10 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BannerRequest $request, $id)
+    public function destroy($id)
     {
         $banner = BannerModel::find($id);
         if($banner) $banner->delete();
-        return redirect()->route('brands.index')->with('success_message','Data Banner berhasil dihapus');
+        return redirect()->route('banners.index')->with('success_message','Data Banner berhasil dihapus');
     }
 }

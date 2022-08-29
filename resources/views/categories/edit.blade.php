@@ -4,7 +4,7 @@
 <h1 class="m-0 text-dark">Edit Category</h1>
 @stop
 @section('content')
-<form action="{{route('categories.update', $category)}}" method="post">
+<form action="{{route('categories.update', $categories)}}" method="post">
     @method('PUT')
     @csrf
     <div class="row">

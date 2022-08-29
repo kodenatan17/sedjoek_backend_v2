@@ -4,8 +4,8 @@
 <h1 class="m-0 text-dark">Edit Banner</h1>
 @stop
 @section('content')
-<form action="{{route('banners.update')}}" method="post" enctype="multipart/form-data">
-    @mehtod_field('PUT')
+<form action="{{route('banners.update', $banner)}}" method="post" enctype="multipart/form-data">
+    @method('PUT')
     @csrf
     <div class="row">
         <div class="col-12">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('articles.index')}}" class="btn btn-default">
+                    <a href="{{route('banners.index')}}" class="btn btn-default">
                         Batal
                     </a>
                 </div>

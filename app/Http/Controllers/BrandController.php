@@ -90,7 +90,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BrandRequest $request, $id)
+    public function destroy($id)
     {
         $brand = BrandModel::find($id);
         if ($brand) $brand->delete();

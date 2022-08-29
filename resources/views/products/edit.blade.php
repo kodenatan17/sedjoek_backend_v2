@@ -5,7 +5,7 @@
 @stop
 @section('content')
 <form action="{{route('products.update', $product)}}" method="post">
-    @method_field('PUT')
+    @method('PUT')
     @csrf
     <div class="row">
         <div class="col-12">
@@ -40,7 +40,7 @@
                         <label for="exampleInputName">Kategori AC</label>
                         <select name="categories_id" class="form-control @error('categories_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
-                            @foreach ($category as $category)
+                            @foreach ($categories as $category)
                             <option value= "{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>

@@ -65,9 +65,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $brand = BrandModel::all();
+        $categories = CategoryModel::all();
         $product = ProductModel::find($id);
         if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
-        return view('products.edit', ['product' => $product]);
+        return view('products.edit', compact('brand', 'categories', 'product'));
     }
 
     /**
@@ -79,7 +81,12 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $product = ProductModel::find($id)->all();
+        $product = ProductModel::find($id);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->categories_id = $request->categories_id;
+        $product->brand_id = $request->brand_id;
         $product->save();
         return redirect()->route('products.index')->with('success_message', 'Berhasil mengubah Product');
     }
@@ -90,7 +97,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductRequest $request, $id)
+    public function destroy($id)
     {
         $product = ProductModel::find($id);
         if ($product) $product->delete();

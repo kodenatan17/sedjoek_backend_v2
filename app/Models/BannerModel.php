@@ -14,11 +14,11 @@ class BannerModel extends Model
     protected $table = 'banners';
 
     protected $fillable =[
-        'urlImage',
+        'urlImages',
     ];
 
     public function getUrlAttributes($urlImage){
         return config('app.url') . Storage::url($urlImage);
     }
-    
+
 }

@@ -64,9 +64,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = CategoryModel::find($id);
-        if (!$category) return redirect()->route('categories.index')->with('error_message', 'Category dengan id' . $id . 'tidak ditemukan');
-        return view('categories.edit', ['category' => $category]);
+        $categories = CategoryModel::find($id);
+        if (!$categories) return redirect()->route('categories.index')->with('error_message', 'Category dengan id' . $id . 'tidak ditemukan');
+        return view('categories.edit', ['categories' => $categories]);
     }
 
     /**
@@ -90,7 +90,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryRequest $request, $id)
+    public function destroy($id)
     {
         $category = CategoryModel::find($id);
         if ($category) $category->delete();

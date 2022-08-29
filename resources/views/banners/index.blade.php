@@ -26,7 +26,7 @@
                         @foreach ($banner as $key => $banner )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><img src = "/temp_banner/ {{$banner->urlImages}}" width="100px"></td>
+                            <td><div style="max-height: 100px; overflow:hidden;"><img src = " {{ asset('storage/' . $banner->urlImages) }}" alt="" width="100px"></div></td>
                             <td>
                                 <a href="{{route('banners.edit', $banner)}}" class="btn btn-primary btn-xs">
                                     Edit
