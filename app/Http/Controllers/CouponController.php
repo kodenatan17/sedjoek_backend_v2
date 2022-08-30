@@ -84,6 +84,15 @@ class CouponController extends Controller
     public function update(Request $request, $id)
     {
         $coupon = CouponModel::find($id)->all();
+        $coupon->coupon_option = $request->coupon_option;
+        $coupon->coupon_code = $request->coupon_code;
+        $coupon->categories = $request->categories;
+        $coupon->users = $request->users;
+        $coupon->coupon_type = $request->coupon_type;
+        $coupon->amount_type = $request->amount_type;
+        $coupon->amount = $request->amount;
+        $coupon->expiry_date = $request->expiry_date;
+        $coupon->status = $request->status;
         $coupon->save();
         return redirect()->route('coupons.index')->with('success_message', 'Berhasil mengubah coupon');
     }
