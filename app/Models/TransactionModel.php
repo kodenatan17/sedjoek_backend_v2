@@ -28,6 +28,6 @@ class TransactionModel extends Model
     }
 
     public function user(){
-        $this->belongsTo(User::class, 'users_id','id');
+        $this->belongsTo(User::class, 'users_id', 'id');
     }
 }

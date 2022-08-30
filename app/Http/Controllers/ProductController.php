@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = ProductModel::with('category','brand')->get();
+        dd($product);
         return view('products.index', ['product' => $product]);
     }
 

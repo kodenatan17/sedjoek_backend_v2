@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TransactionRequest;
 use App\Models\TransactionModel;
-use App\Models\UserDetailModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,8 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = TransactionModel::with('user')->get();
-        return view('transactions.index', ['transaction' => $transaction]);
+        dd($transaction);
+        return view('transactions.index', compact('transaction'));
     }
 
     /**
@@ -89,7 +89,7 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TransactionRequest $request, $id)
+    public function destroy($id)
     {
         $transaction = TransactionModel::find($id);
         if ($transaction) $transaction->delete();

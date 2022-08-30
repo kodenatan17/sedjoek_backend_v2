@@ -30,9 +30,9 @@
                         <label for="exampleInputName">Tags Product</label>
                         <select name="tags" class="form-control @error('tags') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="{{$product->tags ?? old('tags')}}">Promo</option>
-                            <option value="{{$product->tags ?? old('tags')}}">New Arrival</option>
-                            <option value="{{$product->tags ?? old('tags')}}">Best Seller</option>
+                            <option value="Promo" {{$product->tags == 'Promo' ? 'selected' : '' }} >Promo</option>
+                            <option value="New Arrival" {{$product->tags == 'New Arrival' ? 'selected' : ''}} >New Arrival</option>
+                            <option value="Best Seller" {{$product->tags == 'Best Seller' ? 'selected' : ''}} >Best Seller</option>
                         </select>
                         @error('tags') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
@@ -41,7 +41,7 @@
                         <select name="categories_id" class="form-control @error('categories_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
                             @foreach ($categories as $category)
-                            <option value= "{{$category->id}}">{{$category->name}}</option>
+                            <option value= "{{$category->id}}" {{ $category->id == $product->categories_id ? 'selected' : '' }}>{{$category->name}}</option>
                             @endforeach
                         </select>
                         @error('categories_id') <span class="text-danger">{{$message}}</span> @enderror
@@ -51,7 +51,7 @@
                         <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
                             @foreach ($brand as $brand)
-                            <option value= "{{$brand->id}}">{{$brand->name}}</option>
+                            <option value= "{{$brand->id}}" {{ $brand->id == $product->brand_id ? 'selected' : '' }} >{{$brand->name}}</option>
                             @endforeach
                         </select>
                         @error('brand_id') <span class="text-danger">{{$message}}</span> @enderror

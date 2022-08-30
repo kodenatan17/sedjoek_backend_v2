@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CouponModel;
 use App\Models\ProductModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -27,7 +28,9 @@ class CouponController extends Controller
     public function create()
     {
         $products = ProductModel::all();
-        return view('coupons.create', compact('products'));
+        // $users = User::select('email')->where('status', 1)->get()->toArray();
+        $users = User::all();
+        return view('coupons.create', compact('products', 'users'));
     }
 
     /**
@@ -69,9 +72,13 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $coupon = CouponModel::find($id);
-        if (!$coupon) return redirect()->route('coupons.index')->with('error_message', 'coupon dengan id' . $id . 'tidak ditemukan');
-        return view('coupons.edit', ['coupon' => $coupon]);
+        $coupons = CouponModel::find($id);
+        $products = ProductModel::all();
+        $productc = ProductModel::find($id);
+        $users = User::all();
+        $userc = User::find($id);
+        if (!$coupons) return redirect()->route('coupons.index')->with('error_message', 'coupon dengan id' . $id . 'tidak ditemukan');
+        return view('coupons.edit', compact('coupons', 'products', 'users', 'productc', 'userc'));
     }
 
     /**

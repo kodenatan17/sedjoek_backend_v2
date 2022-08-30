@@ -289,9 +289,9 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => 'admin/pages',
+            'url'         => '/',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'label'       => 0,
             'label_color' => 'success',
         ],
         ['header' => 'Database Sedjoek'],
@@ -381,6 +381,11 @@ return [
                     'text' => 'Transaction Detail',
                     'url'  => 'transaction_details',
                     'icon' => 'fas fa-fw fa-credit-card',
+                ],
+                [
+                    'text' => 'Transaction Periodes',
+                    'url'  => 'transaction_periodes',
+                    'icon' => 'fas fa-fw fa-credit-card',
                 ]
             ],
         ],
@@ -424,7 +429,7 @@ return [
                 ],
                 [
                     'text' => 'Refferals',
-                    'url'  => '',
+                    'url'  => '#',
                     'icon' => 'fas fa-fw fa-handshake',
                 ],
             ],
@@ -436,6 +441,28 @@ return [
             'submenu' => [
                 [
                     'text' => 'List Stock',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-box',
+                ],
+                [
+                    'text' => 'List Pengiriman',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-paper-plane',
+                ],
+                [
+                    'text' => 'List Penerimaan',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-inbox',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Database Technision',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Kontrol Pemasangan',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-box',
                 ],

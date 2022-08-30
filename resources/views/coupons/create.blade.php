@@ -13,8 +13,8 @@
                         <div class="form-group">
                             <label for="exampleInputName">Pilih Kupon</label>
                             <br>
-                            <span class="mr-2"><input type="radio" name="coupon_option" id="manualCoupon" value="Manual">Manual</span>
-                            <span><input type="radio" name="coupon_option" id="automaticCoupon" value="Automatic">Automatic</span>
+                            <span class="mr-2"><input type="radio" name="coupon_option" id="manualCoupon" value="Manual" checked>Manual</span>
+                            <span><input type="radio" name="coupon_option" id="automaticCoupon" value="Automatic">Otomatis</span>
                         </div>
                         <div class="form-group" id="couponField">
                             <label for="exampleInputName">Kode Kupon</label>
@@ -26,18 +26,61 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputName">Jenis Kupon</label>
+                            <br>
+                            <span class="mr-2"><input type="radio" name="coupon_type" id="" value="Multiple Times">Beberapa Kali Pakai</span>
+                            <span><input type="radio" name="coupon_type" id="" value="Single Times">Sekali Pakai</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Jenis Jumlah</label>
+                            <br>
+                            <span class="mr-2"><input type="radio" name="amount_type" id="" value="Percentage">Persentase (%)</span>
+                            <span><input type="radio" name="amount_type" id="" value="Fixed">Tetap (INR atau IDR)</span>
+                        </div>
+                        <div class="form-group" id="couponField">
+                            <label for="exampleInputName">Jumlah</label>
+                            <input type="text" class="form-control @error('amount') is-invalid @enderror"
+                                id="exampleInputName" placeholder="Jumlah" name="amount"
+                                value="{{ old('amount') }}">
+                            @error('amount')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputName">Nama Product</label><br>
-                            <select name="products_id[]"
-                                class="selectpicker form-control @error('products_id') is-invalid @enderror"
-                                id="exampleInputName" multiple data-live-search="true">
-                                <option disabled>-----</option>
+                            <select name="categories"
+                                class="form-control @error('categories') is-invalid @enderror"
+                                id="exampleInputName">
+                                <option >-----</option>
                                 @foreach ($products as $product)
-                                    {{-- <option value="{{ $product->id }}">{{ $product->name }}</option> --}}
-                                    <option value="{{ $product->id }}"
-                                        @if (in_array($product->id, old('products_id', []))) selected="selected" @endif>{{ $product->name }}
-                                    </option>
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    {{-- <option value="{{ $product->id }}"
+                                        @if (in_array($product->id, old('categories', []))) selected="selected" @endif>{{ $product->name }}
+                                    </option> --}}
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Nama User</label>
+                            <select name="users" class="form-control @error('users') is-invalid @enderror" id="exampleInputName">
+                                <option >-----</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->email }}">{{ $user->email }}</option>
+
+                                    {{-- <option value="{{$user->email}}"
+                                        @if (in_array($user->email, old('users', []))) selected="selected" @endif>{{ $user->email }}
+                                    </option> --}}
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Tanggal Kadaluarsa</label>
+                            <input type="date" class="form-control @error('expiry_date') is-invalid @enderror"
+                                id="exampleInputName" placeholder="Masukan Tanggal Kadaluarsa" name="expiry_date"
+                                value="{{ old('expiry_date') }}">
+                            @error('expiry_date')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="card-footer">

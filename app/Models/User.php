@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function user_details(){
         return $this->hasMany(UserDetailModel::class, 'users_id','id');
     }
+
+    public function transaction(){
+        return $this->hasMany(TransactionModel::class, 'id', 'users_id');
+    }
 }

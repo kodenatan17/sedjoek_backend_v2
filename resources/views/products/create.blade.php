@@ -28,9 +28,9 @@
                     <div class="form-group">
                         <label for="exampleInputName">Tags Product</label>
                         <select name="tags" class="form-control @error('tags') is-invalid @enderror" id="exampleInputName">
-                            <option value="{{old('tags')}}">Promo</option>
-                            <option value="{{old('tags')}}">New Arrival</option>
-                            <option value="{{old('tags')}}">Best Seller</option>
+                            <option value="Promo">Promo</option>
+                            <option value="New Arrival">New Arrival</option>
+                            <option value="Best Seller">Best Seller</option>
                         </select>
                         @error('tags') <span class="text-danger">{{$message}}</span> @enderror
                     </div>

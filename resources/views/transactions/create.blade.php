@@ -26,23 +26,23 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Harga transaksi</label>
-                        <input type="text" class="form-control @error('total_price') is-invalid @enderror" id="exampleInputName" placeholder="Total Transaksi" name="total_price" value="{{old('total_price')}}">
+                        <input type="number" class="form-control @error('total_price') is-invalid @enderror" id="exampleInputName" placeholder="Total Transaksi" name="total_price" value="{{old('total_price')}}">
                         @error('total_price') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Harga pengiriman</label>
-                        <input type="text" class="form-control @error('shipping_price') is-invalid @enderror" id="exampleInputName" placeholder="Harga Pengiriman" name="shipping_price" value="{{old('shipping_price')}}">
+                        <input type="number" class="form-control @error('shipping_price') is-invalid @enderror" id="exampleInputName" placeholder="Harga Pengiriman" name="shipping_price" value="{{old('shipping_price')}}">
                         @error('shipping_price') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Status Transaksi</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="{{old('status')}}">SHIPPED</option>
-                            <option value="{{old('status')}}">SHIPPING</option>
-                            <option value="{{old('status')}}">PROCESSING</option>
-                            <option value="{{old('status')}}">PENDING</option>
-                            <option value="{{old('status')}}">CANCEL</option>
+                            <option value="SHIPPED">SHIPPED</option>
+                            <option value="SHIPPING">SHIPPING</option>
+                            <option value="PROCESSING">PROCESSING</option>
+                            <option value="PENDING">PENDING</option>
+                            <option value="CANCEL">CANCEL</option>
                         </select>
                         @error('status') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
