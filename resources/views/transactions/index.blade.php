@@ -38,26 +38,26 @@
                         @foreach ($transaction as $key => $transaction )
                         <tr>
                             <td>{{$key+1}}</td>
-                            {{-- <td>{{$transaction->users_id->name}}</td> --}}
+                            <td>{{$transaction->user['name']}}</td>
                             <td>{{$transaction->address}}</td>
                             <td>{{$transaction->total_price}}</td>
-                            <td>{{$tranasacion->shipping_price}}</td>
-                            <td>{{$tranasacion->status}}</td>
-                            <td>{{$tranasacion->payment}}</td>
+                            <td>{{$transaction->shipping_price}}</td>
+                            <td>{{$transaction->status}}</td>
+                            <td>{{$transaction->payment}}</td>
                             <td>
                                 @if(Auth::user()->roles == "ADMIN")
-                                    <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('transactions.edit', $transaction)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('transactions.destroy', $transaction)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Hapus
                                     </a>
                                 @endif
                                 @if(Auth::user()->roles == "ACCOUNTING ADMIN")
-                                    <a href="{{route('transactions.edit', $brand)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('transactions.edit', $transaction)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('transactions.destroy', $brand)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('transactions.destroy', $transaction)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Hapus
                                     </a>
                                 @endif

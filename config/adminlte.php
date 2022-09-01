@@ -441,7 +441,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'List Stock',
-                    'url'  => '#',
+                    'url'  => 'stocks',
                     'icon' => 'fas fa-fw fa-box',
                 ],
                 [

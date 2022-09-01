@@ -104,19 +104,6 @@ class ArticleController extends Controller
         $article = ArticleModel::find($id);
         if ($article) $article->delete();
         return redirect()->route('articles.index')->with('success_message', 'Berhasil menghapus artikel');
-        // $article->delete();
-        // $data = ArticleModel::findOrFail($id);
-        // if($data->delete()){
-        //     Alert::success('success', 'Data telah berhasil dihapus');
-        //     return redirect()->route('articles.index');
-        // }
-        // Alert::error('faill', 'Data telah gagal dihapus');
-        // return redirect()->back();
-
-        // DB::table('articles')->where('id', $id)->delete();
-
-        // return redirect()->route('articles.index')
-        //                 ->with('success','articles deleted successfully');
     }
 
 }

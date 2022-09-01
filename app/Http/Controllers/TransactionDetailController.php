@@ -29,10 +29,10 @@ class TransactionDetailController extends Controller
      */
     public function create()
     {
-        $transaction = TransactionModel::all();
-        $product = ProductModel::all();
-        $user = User::all();
-        return view('transaction_details.create', compact('transaction', 'product', 'user'));
+        $transactions = TransactionModel::all();
+        $products = ProductModel::all();
+        $users = User::all();
+        return view('transaction_details.create', compact('transactions', 'products', 'users'));
     }
 
     /**

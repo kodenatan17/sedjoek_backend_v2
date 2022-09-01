@@ -5,7 +5,7 @@
 @stop
 @section('content')
 <form action="{{route('transactions.update', $transaction)}}" method="post">
-    @method_field('PUT')
+    @method('PUT')
     @csrf
     <div class="row">
         <div class="col-12">

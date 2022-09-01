@@ -13,10 +13,12 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RefferalController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\UserDetailController;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('transaction_periodes', TransactionPeriodeController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('events', EventController::class);
+    Route::resource('stocks', StockController::class);
 });
 
 

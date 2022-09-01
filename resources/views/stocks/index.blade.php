@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Artikel')
+@section('title', 'List Stok')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Article</h1>
+    <h1 class="m-0 text-dark">List Stok</h1>
 @stop
 
 @section('content')
@@ -11,34 +11,31 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('articles.create') }}" class="btn btn-primary mb-2">
+                    <a href="{{ route('stocks.create') }}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Judul</th>
-                                <th>Content</th>
-                                <th>Created By</th>
-                                <th>Type</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Qty</th>
                                 <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($article as $key => $article)
+                            @foreach ($stocks as $key => $stock)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $article->title }}</td>
-                                    <td>{{ $article->content }}</td>
-                                    <td>{{ $article->created_by }}</td>
-                                    <td>{{ $article->type }}</td>
+                                    <td>{{ $stock->name }}</td>
+                                    <td>{{ $stock->price }}</td>
+                                    <td>{{ $stock->qty }}</td>
                                     <td>
-                                        <a href="{{ route('articles.edit', $article) }}" class="btn btn-primary btn-xs">
+                                        <a href="{{ route('stocks.edit', $stock) }}" class="btn btn-primary btn-xs">
                                             Edit
                                         </a>
-
-                                        <a href="{{ route('articles.destroy', $article) }}"
+                                        <a href="{{ route('stocks.destroy', $stock) }}"
                                             onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                             Hapus
                                         </a>

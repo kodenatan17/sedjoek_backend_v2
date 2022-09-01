@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\BrandModel;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,8 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = ProductModel::with('category','brand')->get();
-        dd($product);
+        $product = ProductModel::with('category','brand', 'stock')->get();
         return view('products.index', ['product' => $product]);
     }
 
@@ -29,9 +29,11 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $product = ProductModel::all();
         $categories = CategoryModel::all();
         $brand = BrandModel::all();
-        return view('products.create', compact('categories', 'brand'));
+        $stock = Stock::all();
+        return view('products.create', compact('categories', 'brand', 'stock', 'product'));
     }
 
     /**
@@ -68,6 +70,7 @@ class ProductController extends Controller
     {
         $brand = BrandModel::all();
         $categories = CategoryModel::all();
+        $stock = Stock::all();
         $product = ProductModel::find($id);
         if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
         return view('products.edit', compact('brand', 'categories', 'product'));

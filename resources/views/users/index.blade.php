@@ -22,8 +22,6 @@
                             <th>No.</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Username</th>
-                            <th>Phone</th>
                             <th>Roles</th>
                             @if(Auth::user()->roles == "ADMIN")
                                 <th>Option</th>
@@ -36,8 +34,6 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->username}}</td>
-                                <td>{{$user->phone}}</td>
                                 <td>{{$user->roles}}</td>
                                 @if(Auth::user()->roles == "ADMIN")
                                     <td>

@@ -17,7 +17,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = TransactionModel::with('user')->get();
-        dd($transaction);
+        // dd($transaction);
         return view('transactions.index', compact('transaction'));
     }
 
@@ -64,9 +64,10 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
+        $users = User::all();
         $transaction = TransactionModel::find($id);
         if (!$transaction) return redirect()->route('transactions.index')->with('error_message', 'Transaksi dengan id' . $id . 'tidak ditemukan');
-        return view('transactions.edit', ['transaction' => $transaction]);
+        return view('transactions.edit', compact('users', 'transaction'));
     }
 
     /**
@@ -78,7 +79,15 @@ class TransactionController extends Controller
      */
     public function update(TransactionRequest $request, $id)
     {
-        $transaction = TransactionModel::find($id)->all();
+        $transaction = TransactionModel::find($id);
+        // $transaction->name = $request->name;
+        $transaction->users_id = $request->users_id;
+        $transaction->address = $request->address;
+        // $transaction->payment = $request->payment;
+        $transaction->total_price = $request->total_price;
+        $transaction->shipping_price = $request->shipping_price;
+        $transaction->status = $request->status;
+        // dd($transaction);
         $transaction->save();
         return redirect()->route('transactions.index')->with('success_message', 'Berhasil mengubah Transaksi');
     }

@@ -19,6 +19,7 @@ class ProductModel extends Model
         'tags',
         'categories_id',
         'brand_id',
+        'stock_id',
     ];
 
     public function category(){
@@ -35,6 +36,10 @@ class ProductModel extends Model
 
     public function coupon(){
         return $this->hasMany(CouponModel::class, 'product_id', 'id');
+    }
+
+    public function stock(){
+        return $this->belongsTo(Stock::class, 'name', 'id');
     }
 
     // public function transactiondetails(){

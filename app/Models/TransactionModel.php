@@ -24,10 +24,10 @@ class TransactionModel extends Model
     ];
 
     public function transaction(){
-        $this->hasMany(TransactionPeriodeModel::class, 'transaction_id', 'id');
+        return $this->hasMany(TransactionPeriodeModel::class, 'transaction_id', 'id');
     }
 
     public function user(){
-        $this->belongsTo(User::class, 'users_id', 'id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
 }
