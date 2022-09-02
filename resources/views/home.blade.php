@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>Dashboard</h1>
+    {{ QrCode::generate('Make me into a QrCode!') }}
 @stop
 
 @section('content')

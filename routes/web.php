@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('brands', BrandController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::get('products/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
     Route::resource('categories', CategoryController::class);
     Route::resource('user_details', UserDetailController::class);
     Route::resource('transactions', TransactionController::class);

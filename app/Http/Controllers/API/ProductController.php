@@ -56,4 +56,12 @@ class ProductController extends Controller
             'Data Produk berhasil diambil',
         );
     }
+
+    public function show($id = null)
+    {
+        $model = new ProductModel();
+        $data = $model->find($id);
+
+        return $this->respond($data);
+    }
 }

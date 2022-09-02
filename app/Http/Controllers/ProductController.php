@@ -8,6 +8,7 @@ use App\Models\ProductModel;
 use App\Models\CategoryModel;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use App\Item;
 
 class ProductController extends Controller
 {
@@ -66,14 +67,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = 0)
     {
+        $data = ProductModel::find($id);
+        return response()->json($data);
         $brand = BrandModel::all();
         $categories = CategoryModel::all();
         $stock = Stock::all();
-        $product = ProductModel::find($id);
-        if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
-        return view('products.edit', compact('brand', 'categories', 'product'));
+        if (!$data) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
+        // return view('products.edit', compact('brand', 'categories', 'product'));
     }
 
     /**
@@ -106,5 +108,14 @@ class ProductController extends Controller
         $product = ProductModel::find($id);
         if ($product) $product->delete();
         return redirect()->route('products.index')->with('success_message', 'Berhasil menghapus Product');
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Item::select("name")
+                ->where("name","LIKE","%{$request->input('query')}%")
+                ->get();
+
+        return response()->json($data);
     }
 }

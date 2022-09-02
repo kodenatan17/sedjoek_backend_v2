@@ -53,6 +53,7 @@ Route::controller(RefferalController::class)->group(function (){
 //Product API
 Route::controller(ProductController::class)->group(function () {
     Route::get('/products', 'all');
+    Route::get('/products', 'show');
 });
 
 //Article API
@@ -86,3 +87,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('checkout', [TransactionController::class, 'checkout']); //function untuk transaction checkout
     Route::get('user_details',[UserDetailController::class, 'all']);
 });
+
