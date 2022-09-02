@@ -463,7 +463,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Kontrol Pemasangan',
-                    'url'  => '#',
+                    'url'  => 'installitation_control',
                     'icon' => 'fas fa-fw fa-box',
                 ],
                 [

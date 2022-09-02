@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>Dashboard</h1>
+    {!! QrCode::size(250)->generate('ItSolutionStuff.com'); !!}
 @stop
 
 @section('content')
