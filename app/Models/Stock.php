@@ -21,4 +21,8 @@ class Stock extends Model
     public function product(){
         return $this->hasMany(ProductModel::class, 'id', 'stock_id');
     }
+
+    public function transaction(){
+        return $this->hasMany(TransactionModel::class, 'id', 'transaction_stock_id');
+    }
 }

@@ -378,11 +378,6 @@ return [
                     'icon' => 'fas fa-fw fa-credit-card',
                 ],
                 [
-                    'text' => 'Transaction Detail',
-                    'url'  => 'transaction_details',
-                    'icon' => 'fas fa-fw fa-credit-card',
-                ],
-                [
                     'text' => 'Transaction Periodes',
                     'url'  => 'transaction_periodes',
                     'icon' => 'fas fa-fw fa-credit-card',
@@ -463,7 +458,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Kontrol Pemasangan',
-                    'url'  => '#',
+                    'url'  => 'installitation_control',
                     'icon' => 'fas fa-fw fa-box',
                 ],
                 [

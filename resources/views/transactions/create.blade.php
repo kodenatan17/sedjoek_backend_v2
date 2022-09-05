@@ -13,9 +13,18 @@
                     <div class="form-group">
                         <label for="exampleInputName">Nama User</label>
                         <select name="users_id" class="form-control @error('users_id') is-invalid @enderror" id="exampleInputName">
-                            <option disabled>-----</option>
+                            <option>-----</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Nama Tipe Produk</label>
+                        <select name="transaction_stock_id" class="form-control @error('transaction_stock_id') is-invalid @enderror" id="exampleInputName">
+                            <option>-----</option>
+                            @foreach ($stock as $stock)
+                                <option value="{{$stock->id}}">{{$stock->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -38,11 +47,9 @@
                         <label for="exampleInputName">Status Transaksi</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="SHIPPED">SHIPPED</option>
-                            <option value="SHIPPING">SHIPPING</option>
-                            <option value="PROCESSING">PROCESSING</option>
-                            <option value="PENDING">PENDING</option>
-                            <option value="CANCEL">CANCEL</option>
+                            <option value="SURVEY">SURVEY</option>
+                            <option value="INSTALLATION">INSTALLATION</option>
+                            <option value="FINISH">FINISH</option>
                         </select>
                         @error('status') <span class="text-danger">{{$message}}</span> @enderror
                     </div>

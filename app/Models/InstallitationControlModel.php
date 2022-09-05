@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\InstallitationControlController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TransactionModel extends Model
+class InstallitationControlModel extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -16,7 +16,6 @@ class TransactionModel extends Model
     protected $fillable = [
         'name',
         'users_id',
-        'transaction_stock_id',
         'address',
         'payment',
         'total_price',
@@ -24,15 +23,7 @@ class TransactionModel extends Model
         'status',
     ];
 
-    public function transaction(){
-        return $this->hasMany(TransactionPeriodeModel::class, 'transaction_id', 'id');
-    }
-
     public function user(){
         return $this->belongsTo(User::class, 'users_id', 'id');
-    }
-
-    public function stock(){
-        return $this->belongsTo(Stock::class, 'transaction_stock_id', 'id');
     }
 }

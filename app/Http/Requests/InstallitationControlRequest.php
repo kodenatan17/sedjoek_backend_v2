@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class TransactionRequest extends FormRequest
+class InstallitationControlRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class TransactionRequest extends FormRequest
         return [
             'users_id' => 'required|exists:users,id',
             'address' => 'required|max:255',
-            'status' => 'in:SURVEY,INSTALLATION,FINISH'
+            'status' => 'in:PENDING,SUCCESS,CANCELED,FAILED,SHIPPING,SHIPPED'            
         ];
     }
 }

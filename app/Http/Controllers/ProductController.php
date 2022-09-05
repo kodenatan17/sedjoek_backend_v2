@@ -67,15 +67,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id = 0)
+    public function edit($id)
     {
-        $data = ProductModel::find($id);
-        return response()->json($data);
+        $product = ProductModel::find($id);
         $brand = BrandModel::all();
         $categories = CategoryModel::all();
         $stock = Stock::all();
-        if (!$data) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
-        // return view('products.edit', compact('brand', 'categories', 'product'));
+        if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
+        return view('products.edit', compact('brand', 'categories', 'product'));
     }
 
     /**
@@ -93,6 +92,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->categories_id = $request->categories_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = $request->tags;
         $product->save();
         return redirect()->route('products.index')->with('success_message', 'Berhasil mengubah Product');
     }

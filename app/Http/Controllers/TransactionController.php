@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TransactionRequest;
 use App\Models\TransactionModel;
 use App\Models\User;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -16,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = TransactionModel::with('user')->get();
+        $transaction = TransactionModel::with('user', 'stock')->get();
         // dd($transaction);
         return view('transactions.index', compact('transaction'));
     }
@@ -29,7 +30,8 @@ class TransactionController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('transactions.create', compact('users'));
+        $stock = Stock::all();
+        return view('transactions.create', compact('users', 'stock'));
     }
 
     /**
@@ -65,9 +67,10 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $users = User::all();
+        $stock = Stock::all();
         $transaction = TransactionModel::find($id);
         if (!$transaction) return redirect()->route('transactions.index')->with('error_message', 'Transaksi dengan id' . $id . 'tidak ditemukan');
-        return view('transactions.edit', compact('users', 'transaction'));
+        return view('transactions.edit', compact('users', 'transaction', 'stock'));
     }
 
     /**

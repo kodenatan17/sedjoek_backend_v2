@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\TransactionPeriodeController;
+use App\Http\Controllers\TransactionPeriodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +17,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\UserDetailController;
+use App\Http\Controllers\InstallitationControlController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Contracts\Role;
 
@@ -58,6 +59,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('banners', BannerController::class);
     Route::resource('events', EventController::class);
     Route::resource('stocks', StockController::class);
+    Route::resource('installitation_control', InstallitationControlController::class);
 });
 
 

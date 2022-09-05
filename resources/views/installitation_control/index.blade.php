@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title','List Transaksi Preiode')
+@section('title','List Transaksi')
 
 @section('content_header')
-<h1 class="m-0 text-dark">List Transaksi Periode</h1>
+<h1 class="m-0 text-dark">List Transaksi</h1>
 @stop
 
 @section('content')
@@ -12,12 +12,12 @@
         <div class="card">
             <div class="card-body">
                 @if(Auth::user()->roles == "ADMIN")
-                    <a href="{{route('transaction_periodes.create')}}" class="btn btn-primary mb-2">
+                    <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
                 @endif
                 @if(Auth::user()->roles == "ACCOUNTING ADMIN")
-                    <a href="{{route('transaction_periodes.create')}}" class="btn btn-primary mb-2">
+                    <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
                 @endif
@@ -25,33 +25,39 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Transaksi</th>
-                            <th>Mulai Pemasanagan</th>
-                            <th>Selesai Pemasangan</th>
+                            <th>User</th>
+                            <th>Alamat</th>
+                            <th>Total Harga</th>
+                            <th>Harga Pengiriman</th>
+                            <th>Status</th>
+                            <th>Pembayaran</th>
                             <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($periode as $key => $periode )
+                        @foreach ($transaction as $key => $transaction )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$periode->transaction['status']}}</td>
-                            <td>{{$periode->started_at}}</td>
-                            <td>{{$periode->finished_at}}</td>
+                            <td>{{$transaction->user['name']}}</td>
+                            <td>{{$transaction->address}}</td>
+                            <td>{{$transaction->total_price}}</td>
+                            <td>{{$transaction->shipping_price}}</td>
+                            <td>{{$transaction->status}}</td>
+                            <td>{{$transaction->payment}}</td>
                             <td>
                                 @if(Auth::user()->roles == "ADMIN")
-                                    <a href="{{route('transaction_periodes.edit', $periode)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('transactions.edit', $transaction)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('transaction_periodes.destroy', $periode)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('transactions.destroy', $transaction)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Hapus
                                     </a>
                                 @endif
                                 @if(Auth::user()->roles == "ACCOUNTING ADMIN")
-                                    <a href="{{route('transaction_periodes.edit', $periode)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('transactions.edit', $transaction)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('transaction_periodes.destroy', $periode)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('transactions.destroy', $transaction)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Hapus
                                     </a>
                                 @endif
