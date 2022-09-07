@@ -14,6 +14,7 @@ use App\Http\Controllers\API\RefferalController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\UserDetailController;
+use App\Http\Controllers\API\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +53,8 @@ Route::controller(RefferalController::class)->group(function (){
 
 //Product API
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/products', 'all');
-    Route::get('/products', 'show');
+    Route::get('/products',[ProductController::class, 'index']);
+    Route::get('/products/show', 'show');
 });
 
 //Article API
@@ -69,7 +70,11 @@ Route::controller(CouponController::class)->group(function(){
 //Category product API
 Route::controller(ProductCategoryController::class)->group(function () {
     Route::get('/categories', 'all');
+    Route::post('/categories/store', 'store');
+    Route::put('/categories/update/{id}', 'update');
+    Route::delete('/categories/delete/{id}', 'destroy');
 });
+
 //Brand product API
 Route::controller(BrandProductController::class)->group(function () {
     Route::get('/brands', 'all');
@@ -88,3 +93,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user_details',[UserDetailController::class, 'all']);
 });
 
+//Stock API
+Route::controller(StockController::class)->group(function () {
+    Route::get('/stocks', 'index');
+    Route::post('/stocks/store', 'store');
+    Route::put('/stocks/update/{id}', 'update');
+    Route::delete('/stocks/delete/{id}', 'destroy');
+});

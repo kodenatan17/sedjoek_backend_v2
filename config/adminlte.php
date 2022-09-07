@@ -333,6 +333,11 @@ return [
                     ],
                 ],
                 [
+                    'text' => 'Karyawan',
+                    'url' => 'employees',
+                    'icon' => 'fas fa-fw fa-user'
+                ],
+                [
                     'text' => 'User',
                     'url' => 'users',
                     'icon' => 'fas fa-fw fa-user'
