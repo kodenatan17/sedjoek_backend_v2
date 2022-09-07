@@ -1,21 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
- 
-use App\Http\Requests\InstallitationControlRequest;
-use App\Models\InstallitationControlModel;
-use App\Models\Stock;
-use App\Models\User;
+
+use App\Models\Survey;
 use Illuminate\Http\Request;
 
-
-class InstallitationControlController extends Controller
+class SurveyController extends Controller
 {
     public function index()
     {
-        $installitation = InstallitationControlModel::with('user')->get();
+        $survey = Survey::with('user')->get();
         // dd($installitation);
-        return view('installitation_control.index', compact('installitation'));
+        return view('list_survey.index', compact('survey'));
     }
 
     /**
@@ -163,5 +159,3 @@ class InstallitationControlController extends Controller
     }
 
 }
-
-
