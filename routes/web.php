@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\TransactionPeriodeController;
+use App\Http\Controllers\TransactionPeriodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -9,6 +9,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromoController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\InstallitationControlController;
+use App\Http\Controllers\NotFoundController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Contracts\Role;
 
@@ -38,14 +40,13 @@ use Spatie\Permission\Contracts\Role;
 
 Auth::routes();
 
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::middleware('auth')->group(function(){
+Route::middleware('auth', 'roles:ADMIN')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('articles', ArticleController::class);
     Route::resource('brands', BrandController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::get('products/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
     Route::resource('categories', CategoryController::class);
     Route::resource('user_details', UserDetailController::class);
     Route::resource('transactions', TransactionController::class);
@@ -59,10 +60,12 @@ Route::middleware('auth')->group(function(){
     Route::resource('events', EventController::class);
     Route::resource('stocks', StockController::class);
     Route::resource('installitation_control', InstallitationControlController::class);
+    Route::resource('employees', EmployeeController::class);
 });
 
-
-
+Route::middleware('auth', 'roles:')->group(function () {
+    Route::get('/404', [NotFoundController::class, 'index'])->name('notfound');
+});
 //super admin
 // Route::middleware('auth','roles:ADMIN')->group(function(){
 //     Route::resource('users', UserController::class);

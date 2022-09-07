@@ -39,11 +39,9 @@
                         <label for="exampleInputName">Status Transaksi</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="{{$transaction->status ?? old('status')}}">SHIPPED</option>
-                            <option value="{{$transaction->status ?? old('status')}}">SHIPPING</option>
-                            <option value="{{$transaction->status ?? old('status')}}">PROCESSING</option>
-                            <option value="{{$transaction->status ?? old('status')}}">PENDING</option>
-                            <option value="{{$transaction->status ?? old('status')}}">CANCEL</option>
+                            <option value="SURVEY" {{$transaction->status == 'SURVEY' ? 'selected' : 'SURVEY'}}>SURVEY</option>
+                            <option value="INSTALLATION" {{$transaction->status == 'INSTALLATION' ? 'selected' : ''}}>INSTALLATION</option>
+                            <option value="FINISH" {{$transaction->status == 'FINISH' ? 'selected' : ''}}>FINISH</option>
                         </select>
                         @error('status') <span class="text-danger">{{$message}}</span> @enderror
                     </div>

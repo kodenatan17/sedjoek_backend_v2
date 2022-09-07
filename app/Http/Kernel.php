@@ -69,7 +69,7 @@ class Kernel extends HttpKernel
         //     \Illuminate\Routing\Middleware\SubstituteBindings::class,
         // ],
         'admin' => IsAdmin::class,
-        // 'roles' => \App\Http\Middleware\roles::class,
+        'roles' => \App\Http\Middleware\roles::class,
 
     ];
 }

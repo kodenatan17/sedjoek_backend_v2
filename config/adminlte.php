@@ -333,6 +333,11 @@ return [
                     ],
                 ],
                 [
+                    'text' => 'Karyawan',
+                    'url' => 'employees',
+                    'icon' => 'fas fa-fw fa-user'
+                ],
+                [
                     'text' => 'User',
                     'url' => 'users',
                     'icon' => 'fas fa-fw fa-user'
@@ -375,11 +380,6 @@ return [
                 [
                     'text' => 'Transaction',
                     'url'  => 'transactions',
-                    'icon' => 'fas fa-fw fa-credit-card',
-                ],
-                [
-                    'text' => 'Transaction Detail',
-                    'url'  => 'transaction_details',
                     'icon' => 'fas fa-fw fa-credit-card',
                 ],
                 [

@@ -16,6 +16,7 @@ class TransactionModel extends Model
     protected $fillable = [
         'name',
         'users_id',
+        'transaction_stock_id',
         'address',
         'payment',
         'total_price',
@@ -29,5 +30,9 @@ class TransactionModel extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function stock(){
+        return $this->belongsTo(Stock::class, 'transaction_stock_id', 'id');
     }
 }

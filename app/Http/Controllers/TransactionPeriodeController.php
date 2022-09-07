@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TransactionPeriodeRequest;
-use App\Models\TransactionDetailModel;
+use App\Models\TransactionModel;
 use App\Models\TransactionPeriodeModel;
 use Illuminate\Http\Request;
 
-class PeriodeController extends Controller
+class TransactionPeriodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        $periode = TransactionPeriodeModel::with('transaction_details')->get();
+        $periode = TransactionPeriodeModel::with('transaction')->get();
         return view('transaction_periodes.index', ['periode' => $periode]);
     }
 
@@ -27,7 +27,7 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        $transaction_details = TransactionDetailModel::all();
+        $transaction_details = TransactionModel::all();
         return view('transaction_periodes.create', compact('transaction_details'));
     }
 
@@ -37,7 +37,7 @@ class PeriodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TransactionPeriodeRequest $request)
+    public function store(Request $request)
     {
         $array = $request->all();
         $periode = TransactionPeriodeModel::create($array);

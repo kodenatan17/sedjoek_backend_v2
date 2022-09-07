@@ -21,9 +21,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        // $users = User::all();
-        // $transaction_stock_id = Stock::all();
-        // return view('installitation_control.create', compact('users', 'transaction_stock_id'));
+        // 
     }
 
     /**
@@ -32,7 +30,7 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(InstallitationControlRequest $request)
+    public function store(Request $request)
     {
         $array = $request->only([
             'photo_location' => 'image|file|max:1024'
