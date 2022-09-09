@@ -22,6 +22,21 @@
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputName">Roles</label>
+                        <select name="roles" class="form-control @error('roles') is-invalid @enderror"
+                            id="exampleInputName">
+                            <option disabled>------</option>
+                            <option value="SUPER ADMIN" {{ $user->roles == 'SUPER ADMIN' ? 'selected' : '' }}>SUPER ADMIN</option>
+                            <option value="ADMIN" {{ $user->roles == 'ADMIN' ? 'selected' : '' }}>ADMIN</option>
+                            <option value="MARKETING ADMIN" {{ $user->roles == 'MARKETING ADMIN' ? 'selected' : '' }}>MARKETING</option>
+                            <option value="WAREHOUSE ADMIN" {{ $user->roles == 'WAREHOUSE ADMIN' ? 'selected' : '' }}>WAREHOUSE</option>
+                            <option value="TECHNICIAN ADMIN"{{ $user->roles == 'TECHNICIAN ADMIN' ? 'selected' : '' }}>TEKNISI</option>
+                        </select>
+                        @error('roles')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputPassword">Password</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword" placeholder="Password" name="password">
                         @error('password') <span class="text-danger">{{$message}}</span> @enderror

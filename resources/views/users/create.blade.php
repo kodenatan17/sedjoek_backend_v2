@@ -21,16 +21,16 @@
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Status Transaksi</label>
-                        <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
+                        <label for="exampleInputName">Roles</label>
+                        <select name="roles" class="form-control @error('roles') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="USER">USER</option>
-                            <option value="ADMIN">ADMIN</option>
                             <option value="SUPER ADMIN">SUPER ADMIN</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="MARKETING ADMIN">MARKETING</option>
                             <option value="WAREHOUSE ADMIN">WAREHOUSE</option>
                             <option value="TECHNICIAN ADMIN">TEKNISI</option>
                         </select>
-                        @error('status') <span class="text-danger">{{$message}}</span> @enderror
+                        @error('roles') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword">Password</label>

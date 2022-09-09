@@ -20,6 +20,7 @@
                         <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Nik</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Roles</th>
@@ -32,9 +33,10 @@
                         @foreach($users as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
+                                <td>{{$user->employee_id !== null ? $user->employee->nik : '-' }}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->roles}}</td>
+                                <td>{{$user->roles !== null ? $user->roles : 'USER'}}</td>
                                 @if(Auth::user()->roles == "ADMIN")
                                     <td>
                                         <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">

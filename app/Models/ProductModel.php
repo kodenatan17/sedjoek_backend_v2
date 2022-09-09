@@ -13,14 +13,18 @@ class ProductModel extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name',
+        'stock_id',
         'price',
         'description',
         'tags',
         'categories_id',
         'brand_id',
-        'stock_id',
+        'stock',
     ];
+
+    public function stocks(){
+        return $this->belongsTo(Stock::class, 'stock_id', 'id');
+    }
 
     public function category(){
         return $this->belongsTo(CategoryModel::class, 'categories_id','id');
@@ -38,8 +42,8 @@ class ProductModel extends Model
         return $this->hasMany(CouponModel::class, 'product_id', 'id');
     }
 
-    public function stock(){
-        return $this->belongsTo(Stock::class, 'name', 'id');
+    public function gallery(){
+        return $this->hasMany(GalleryModel::class, 'id', 'product_id');
     }
 
     // public function transactiondetails(){

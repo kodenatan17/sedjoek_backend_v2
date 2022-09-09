@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
-        return view('users.index', ['users' => $users]);
+        $employee = Employee::all();
+        return view('users.index', compact('users', 'employee'));
     }
 
     /**
@@ -26,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $employee = Employee::all();
+        return view('users.create', compact('employee'));
     }
 
     /**
@@ -71,11 +73,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $employee = Employee::all();
         if (!$user) return redirect()->route('users.index')
             ->with('error_message', 'User dengan id' . $id . ' tidak ditemukan');
-        return view('users.edit', [
-            'user' => $user
-        ]);
+        return view('users.edit', compact('user', 'employee'));
     }
     public function update(Request $request, $id)
     {
@@ -87,6 +88,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->roles = $request->roles;
         if ($request->password) $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('users.index')

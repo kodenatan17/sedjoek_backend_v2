@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title','List Product')
+@section('title','List Gallery')
 
 @section('content_header')
-<h1 class="m-0 text-dark">List Product</h1>
+<h1 class="m-0 text-dark">List Gallery</h1>
 @stop
 
 @section('content')
@@ -11,39 +11,29 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('products.create')}}" class="btn btn-primary mb-2">
+                <a href="{{route('gallerys.create')}}" class="btn btn-primary mb-2">
                     Tambah
                 </a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama</th>
-                            <th>Price</th>
-                            <th>Stok</th>
-                            <th>Description</th>
-                            <th>Tags</th>
-                            <th>Kategori</th>
-                            <th>Brand</th>
+                            <th>Nama Produk</th>
+                            <th>Images</th>
                             <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $key => $product )
+                        @foreach ($gallerys as $key => $gallery )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$product->stocks->name}}</td>
-                            <td>{{$product->price}}</td>
-                            <td>{{$product->stock}}</td>
-                            <td>{{$product->description}}</td>
-                            <td>{{$product->tags}}</td>
-                            <td>{{$product->category['name']}}</td>
-                            <td>{{$product->brand['name']}}</td>
+                            <td>{{$gallery->product->name}}</td>
+                            <td><div style="max-height: 100px; overflow:hidden;"><img src = " {{ asset('storage/' . $gallery->url) }}" alt="" width="100px"></div></td>
                             <td>
-                                <a href="{{route('products.edit', $product)}}" class="btn btn-primary btn-xs">
+                                <a href="{{route('gallerys.edit', $gallery)}}" class="btn btn-primary btn-xs">
                                     Edit
                                 </a>
-                                <a href="{{route('products.destroy', $product)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                <a href="{{route('gallerys.destroy', $gallery)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                     Hapus
                                 </a>
                             </td>

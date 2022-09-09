@@ -17,9 +17,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $article = Employee::all();
+        $employee = Employee::all();
 
-        return view('articles.index', ['article' => $article]);
+        return view('employees.index', compact('employee'));
     }
 
     /**
@@ -29,8 +29,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $products = User::all();
-        return view('articles.create', compact('products'));
+        $user = User::all();
+        return view('employees.create', compact('user'));
     }
 
     /**
@@ -42,10 +42,15 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $array = $request->only([
-            'title', 'content', 'created_by', 'type', 'created_at'
+            'nik' => 'required|unique',
+            'name' => 'required',
+            'jobs' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'join_date' => 'required'
         ]);
-        $article = Employee::create($array);
-        return redirect()->route('articles.index')->with('success_message', 'Berhasil Menambahkan Article Baru');
+        $employee = Employee::create($array);
+        return redirect()->route('employees.index')->with('success_message', 'Berhasil Menambahkan Article Baru');
     }
 
     /**
@@ -67,9 +72,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $article = Employee::find($id);
-        if (!$article) return redirect()->route('articles.index')->with('error_message', 'Article dengan id' . $id . 'tidak ditemukan');
-        return view('articles.edit', ['article' => $article]);
+        $employee = Employee::find($id);
+        if (!$employee) return redirect()->route('employees.index')->with('error_message', 'Article dengan id' . $id . 'tidak ditemukan');
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -81,13 +86,15 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Employee::find($id);
-        $article->title = $request->title;
-        $article->content = $request->content;
-        $article->created_by = $request->created_by;
-        $article->type = $request->type;
-        $article->save();
-        return redirect()->route('articles.index')->with('success_message', 'Berhasil mengubah artikel');
+        $employee = Employee::find($id);
+        $employee->nik = $request->nik;
+        $employee->name = $request->name;
+        $employee->jobs = $request->jobs;
+        $employee->phone = $request->phone;
+        $employee->address = $request->address;
+        $employee->join_date = $request->join_date;
+        $employee->save();
+        return redirect()->route('employees.index')->with('success_message', 'Berhasil mengubah artikel');
     }
 
     /**
@@ -98,8 +105,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $article = Employee::find($id);
-        if ($article) $article->delete();
-        return redirect()->route('articles.index')->with('success_message', 'Berhasil menghapus artikel');
+        $employee = Employee::find($id);
+        if ($employee) $employee->delete();
+        return redirect()->route('employees.index')->with('success_message', 'Berhasil menghapus artikel');
     }
 }

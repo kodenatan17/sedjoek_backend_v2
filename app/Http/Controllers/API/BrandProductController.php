@@ -18,7 +18,7 @@ class BrandProductController extends Controller
         $show_brand = $request->input('show_brand');
 
         if ($id) {
-            $brand = BrandModel::with(['brands'])->find($id);
+            $brand = BrandModel::find($id);
             if ($brand) {
                 return ResponseFormatter::success($brand, 'Data Brand Berhasil diambil');
             } else {

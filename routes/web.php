@@ -7,6 +7,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\EventController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ProductController;
+>>>>>>> 2e63562b46b3a21dc2986d8214395859b9ef7921
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\BannerController;
@@ -49,7 +54,7 @@ Route::middleware('auth', 'roles:ADMIN')->group(function () {
     Route::resource('brands', BrandController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-    Route::get('products/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
+    Route::get('products/autocomplete/{id}', [ProductController::class, 'autocomplete'])->name('autocomplete');
     Route::resource('categories', CategoryController::class);
     Route::resource('user_details', UserDetailController::class);
     Route::resource('transactions', TransactionController::class);
@@ -64,9 +69,13 @@ Route::middleware('auth', 'roles:ADMIN')->group(function () {
     Route::resource('stocks', StockController::class);
     Route::resource('installitation_control', InstallitationControlController::class);
     Route::resource('employees', EmployeeController::class);
+<<<<<<< HEAD
     Route::resource('list_survey', SurveyController::class);
     Route::resource('list_pemasangan', InstallationController::class);
     Route::resource('selesai_pemasangan', FinishController::class);
+=======
+    Route::resource('gallerys', GalleryController::class);
+>>>>>>> 2e63562b46b3a21dc2986d8214395859b9ef7921
 });
 
 Route::middleware('auth', 'roles:')->group(function () {

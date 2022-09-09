@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
+use App\Models\TransactionModel;
+use App\Models\TransactionDetailModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class TransactionController extends Controller
         $limit = $request->input('limit', 6);
         $status = $request->input('status');
         if ($id) {
-            $transaction = Transaction::with(['details.product'])->find($id);
+            $transaction = TransactionModel::with(['details.product'])->find($id);
             if ($transaction) {
                 return ResponseFormatter::success(
                     $transaction,
@@ -31,7 +31,7 @@ class TransactionController extends Controller
                 );
             }
         }
-        $transaction = Transaction::with(['details.product'])->where('users_id', Auth::user()->id);
+        $transaction = TransactionModel::with(['details.product'])->where('users_id', Auth::user()->id);
 
         if ($status) {
             $transaction->where('status', $status);
@@ -53,7 +53,7 @@ class TransactionController extends Controller
             'status' => 'required|in:PENDING,SUCCESS,CANCELLED,FAILED,SHIPPING,SHIPPED',
         ]);
 
-        $transaction = Transaction::create([
+        $transaction = TransactionModel::create([
             'users_id' => Auth::user()->id,
             'address' => $request->address,
             'total_price' => $request->total_price,
@@ -63,7 +63,7 @@ class TransactionController extends Controller
 
         foreach ($request->details as $product) {
             # code...
-            TransactionDetail::create([
+            TransactionDetailModel::create([
                 'users_id' => Auth::user()->id,
                 'products_id' => $product['id'],
                 'transactions_id' => $transaction->id,
