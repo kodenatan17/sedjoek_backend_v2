@@ -19,8 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = ProductModel::with('category','brand', 'stock')->get();
-        return view('products.index', ['product' => $product]);
+        $products = ProductModel::with('category','brand', 'stocks')->get();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductController extends Controller
         $categories = CategoryModel::all();
         $stock = Stock::all();
         if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
-        return view('products.edit', compact('brand', 'categories', 'product'));
+        return view('products.edit', compact('brand', 'categories', 'product', 'stock'));
     }
 
     /**
@@ -93,6 +93,7 @@ class ProductController extends Controller
         $product->categories_id = $request->categories_id;
         $product->brand_id = $request->brand_id;
         $product->tags = $request->tags;
+        $product->stock = $request->stock;
         $product->save();
         return redirect()->route('products.index')->with('success_message', 'Berhasil mengubah Product');
     }
@@ -110,12 +111,27 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success_message', 'Berhasil menghapus Product');
     }
 
-    public function autocomplete(Request $request)
+    public function autocomplete($id = 0)
     {
-        $data = Item::select("name")
-                ->where("name","LIKE","%{$request->input('query')}%")
-                ->get();
-
+        $data = Stock::find($id);
         return response()->json($data);
     }
+
+    // public function autocomplete(Request $request)
+    // {
+    //     $data = Item::select("name")
+    //             ->where("name","LIKE","%{$request->input('query')}%")
+    //             ->get();
+
+    //     return response()->json($data);
+    // }
+
+    // public function autocomplete($id)
+    // {
+    //     $dt = ProductModel::where('id',$id)->first();
+
+    //     return response()->json([
+    //         'data'=>$dt
+    //     ]);
+    // }
 }

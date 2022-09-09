@@ -45,7 +45,11 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $array = $request->only([
-            'title', 'content', 'created_by', 'type', 'created_at'
+            'title' => 'required',
+            'content' => 'required',
+            'created_by' => 'required',
+            'type' => 'required',
+            'created_at' => 'required'
         ]);
         $article = ArticleModel::create($array);
         return redirect()->route('articles.index')->with('success_message', 'Berhasil Menambahkan Article Baru');

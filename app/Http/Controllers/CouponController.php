@@ -41,7 +41,17 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $array = $request->all();
+        $array = $request->only([
+            'coupon_option' => 'required',
+            'coupon_code' => 'required',
+            'categories' => 'required',
+            'users' => 'required',
+            'coupon_type' => 'required',
+            'amount_type' => 'required',
+            'amount' => 'required',
+            'expiry_date' => 'reuired',
+            'status' => 'required'
+        ]);
         $coupon = CouponModel::create($array);
         return redirect()->route('coupons.index')->with('success_message', 'Berhasil menambahkan coupon Baru');
     }

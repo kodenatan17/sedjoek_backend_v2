@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RefferalController;
@@ -46,7 +47,7 @@ Route::middleware('auth', 'roles:ADMIN')->group(function () {
     Route::resource('brands', BrandController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-    Route::get('products/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
+    Route::get('products/autocomplete/{id}', [ProductController::class, 'autocomplete'])->name('autocomplete');
     Route::resource('categories', CategoryController::class);
     Route::resource('user_details', UserDetailController::class);
     Route::resource('transactions', TransactionController::class);
@@ -61,6 +62,7 @@ Route::middleware('auth', 'roles:ADMIN')->group(function () {
     Route::resource('stocks', StockController::class);
     Route::resource('installitation_control', InstallitationControlController::class);
     Route::resource('employees', EmployeeController::class);
+    Route::resource('gallerys', GalleryController::class);
 });
 
 Route::middleware('auth', 'roles:')->group(function () {

@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title', 'Edit Artikel')
+@section('title', 'Edit Karyawan')
 @section('content_header')
-<h1 class="m-0 text-dark">Edit Artikel</h1>
+<h1 class="m-0 text-dark">Edit Karyawan</h1>
 @stop
 @section('content')
-    <form action="{{route('articles.update', $article)}}" method="post">
+    <form action="{{route('employees.update', $employee)}}" method="post">
     @method('PUT')
     @csrf
     <div class="row">
@@ -12,29 +12,46 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for ="exampleInputName">Title</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="exampleInputName" placeholder="Judul Artikel" name="title" value="{{$article->title ?? old('title')}}">
-                        @error('title') <span class="text-danger">{{$message}}</span> @enderror
+                        <label for="exampleInputName">NIK</label>
+                        <input type="text" class="form-control @error('nik') is-invalid @enderror" id="exampleInputName" placeholder="NIK" name="nik" value="{{ $employee->nik ?? old('nik')}}">
+                        @error('nik') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Content Article</label>
-                        <input class="form-control @error('content') is-invalid @enderror" id="exampleInputContent" placeholder="Konten Artikel" name="content" value="{{$article->content ?? old('content')}}" rows="4">
-                        @error('content') <span class="text-danger">{{$message}}</span> @enderror
+                        <label for="exampleInputName">Nama</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Masukan Nama Lengkap" name="name" value="{{ $employee->name ?? old('name')}}">
+                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Pekerjaan</label>
+                        <select name="jobs" class="form-control @error('jobs') is-invalid @enderror" id="exampleInputName">
+                            <option disabled>------</option>
+                            <option value="SUPER ADMIN" {{$employee->jobs == 'SUPER ADMIN' ? 'selected' : ''}}>SUPER ADMIN</option>
+                            <option value="ADMIN" {{$employee->jobs == 'ADMIN' ? 'selected' : ''}}>ADMIN</option>
+                            <option value="MARKETING ADMIN" {{$employee->jobs == 'MARKETING ADMIN' ? 'selected' : ''}}>MARKETING</option>
+                            <option value="WAREHOUSE ADMIN" {{$employee->jobs == 'WAREHOUSE ADMIN' ? 'selected' : ''}}>WAREHOUSE</option>
+                            <option value="TECHNICIAN ADMIN" {{$employee->jobs == 'TECHNICIAN ADMIN' ? 'selected' : ''}}>TEKNISI</option>
+                        </select>
+                        @error('jobs') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class ="form-group">
-                        <label for="exampleInputName">Created by</label>
-                        <input type="text" class="form-control @error('created_by') is-invalid @enderror" id="exampleInputName" placeholder="Dibuat Oleh" name="created_by" value="{{$article->created_by ?? old('created_by')}}">
-                        @error('created_by') <span class="text-danger">{{$message}}</span> @enderror
+                        <label for="exampleInputName">No Handphone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputName" placeholder="Masukan No Hp" name="phone" value="{{ $employee->phone ?? old('phone')}}">
+                        @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class ="form-group">
-                        <label for="exampleInputName">Type Article</label>
-                        <input type="text" class="form-control @error('type') is-invalid @enderror" id="exampleInputName" placeholder="Tipe Artikel" name="type" value="{{$article->type ?? old('type')}}">
-                        @error('type') <span class="text-danger">{{$message}}</span> @enderror
+                        <label for="exampleInputName">Alamat</label>
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputName" placeholder="Masukan Alamat " name="address" value="{{ $employee->address ?? old('address')}}">
+                        @error('address') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    <div class ="form-group">
+                        <label for="exampleInputName">Tanggal Masuk</label>
+                        <input type="date" class="form-control @error('join_date') is-invalid @enderror" id="exampleInputName" placeholder="Masukan Tanggal Masuk " name="join_date" value="{{ $employee->join_date ?? old('join_date')}}">
+                        @error('join_date') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('articles.index')}}" class="btn btn-default">
+                    <a href="{{route('employees.index')}}" class="btn btn-default">
                         Batal
                     </a>
                 </div>

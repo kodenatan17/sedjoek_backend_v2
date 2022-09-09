@@ -86,7 +86,6 @@ class BannerController extends Controller
         if($request->file('urlImages')){
             $banner['urlImages'] = $request->file('urlImages')->store('post-images');
         }
-        dd($banner);
         $banner->save();
         return redirect()->route('banners.index')->with('success_message', 'Berhasil mengubah Banner');
     }

@@ -415,6 +415,11 @@ return [
                     'url'  => 'banners',
                     'icon' => 'fas fa-fw fa-images',
                 ],
+                [
+                    'text' => 'Gallery',
+                    'url'  => 'gallerys',
+                    'icon' => 'fas fa-fw fa-images',
+                ],
             ],
         ],
         [

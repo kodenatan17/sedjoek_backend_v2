@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\BrandProductController;
 use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\GalleryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\PromoController;
 use App\Http\Controllers\API\RefferalController;
@@ -99,4 +100,12 @@ Route::controller(StockController::class)->group(function () {
     Route::post('/stocks/store', 'store');
     Route::put('/stocks/update/{id}', 'update');
     Route::delete('/stocks/delete/{id}', 'destroy');
+});
+
+//Gallery API
+Route::controller(GalleryController::class)->group(function () {
+    Route::get('/gallerys', 'index');
+    Route::post('/gallerys/store', 'store');
+    Route::put('/gallerys/update/{id}', 'update');
+    Route::delete('/gallerys/delete/{id}', 'destroy');
 });

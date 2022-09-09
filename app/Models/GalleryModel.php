@@ -12,14 +12,18 @@ class GalleryModel extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'product_galleries';
-    
+
     protected $fillable = [
-        'products_id',
+        'product_id',
         'url',
     ];
 
     public function getUrlAttributes($url){
         return config('app.url') . Storage::url($url);
+    }
+
+    public function product(){
+        return $this->belongsTo(ProductModel::class, 'product_id', 'id');
     }
 
 }

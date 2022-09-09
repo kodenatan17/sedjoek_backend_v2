@@ -11,18 +11,46 @@ class StockController extends Controller
 {
     public function index(Request $request)
     {
-        try {
-            $data =  Stock::all();
-            if ($data){
-                return response()->json($data, 200);
-            }else{
-                return response()->json($data, 400);
+        $id = $request->input('id');
+        $limit = $request->input('limit', 6);
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $qty = $request->input('qty');
+
+        $show_products = $request->input('show_products');
+        $show_transaction = $request->input('show_transaction');
+
+        if ($id) {
+            $stock = Stock::find($id);
+            if ($stock) {
+                return ResponseFormatter::success($stock, 'Data Kategori berhasil diambil');
+            } else {
+                return ResponseFormatter::error(null, 'Data Kategori tidak ada', 404);
             }
-        } catch (\Exception $ex) {
-            return response()->json($ex->getMessage());
         }
-        // $data = Stock::all();
-        // return response()->json($data);
+        $stock = Stock::query();
+
+        if ($name) {
+            $stock->where('name', 'like', '%' . $name . '%');
+        }
+        if ($price) {
+            $stock->where('price', 'like', '%' . $price . '%');
+        }
+        if ($qty) {
+            $stock->where('qty', 'like', '%' . $qty . '%');
+        }
+        if ($show_products) {
+            $stock->with('products');
+        }
+        if ($show_transaction) {
+            $stock->with('transaction');
+        }
+        return ResponseFormatter::success(
+            $stock->paginate($limit),
+            'Data Kategori berhasil diambil'
+        );
+        $data = Stock::all();
+        return response()->json($data);
     }
 
     public function store(Request $request)

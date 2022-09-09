@@ -12,13 +12,15 @@ class Stock extends Model
 
     protected $table = 'stocks';
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'price',
         'qty'
     ];
 
-    public function product(){
+    public function products(){
         return $this->hasMany(ProductModel::class, 'id', 'stock_id');
     }
 
