@@ -17,6 +17,7 @@
                             <th>No.</th>
                             <th>User</th>
                             <th>Nama Produk</th>
+                            <th>Nama Teknisi</th>
                             <th>Alamat</th>
                             <th>Total Harga</th>
                             <th>Harga Pengiriman</th>
@@ -40,7 +41,9 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>{{$installitation->user->name}}</td>
-                            <td>{{$installitation->transaction_stock_id}}</td> {{-- name produk --}}
+                            <td>{{$installitation->transaction_stock_id !== null ? $installitation->stocks->name : '-' }}</td>
+                            <td>{{$installitation->technician->name}}</td>
+                            {{-- <td>{{$installitation->technician_users_id !== null ? $installitation->transactionStock->name : '-' }}</td> --}}
                             <td>{{$installitation->address}}</td>
                             <td>{{$installitation->total_price}}</td>
                             <td>{{$installitation->shipping_price}}</td>

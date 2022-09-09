@@ -39,7 +39,7 @@
                         <label for="exampleInputName">Status Transaksi</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="SURVEY" {{$transaction->status == 'SURVEY' ? 'selected' : 'SURVEY'}}>SURVEY</option>
+                            <option value="SURVEY" {{$transaction->status == 'SURVEY' ? 'selected' : ''}}>SURVEY</option>
                             <option value="INSTALLATION" {{$transaction->status == 'INSTALLATION' ? 'selected' : ''}}>INSTALLATION</option>
                             <option value="FINISH" {{$transaction->status == 'FINISH' ? 'selected' : ''}}>FINISH</option>
                         </select>

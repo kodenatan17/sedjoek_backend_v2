@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Stock;
-use App\Models\SurveyModel;
+use App\Models\FinishModel;
 use Illuminate\Http\Request;
+use App\Http\Requests\FinishRequest;
 
-class SurveyController extends Controller
+class FinishController extends Controller
 {
     public function index()
     {
-        $survey = SurveyModel::all();
+        $finish = FinishModel::all();
         // dd($installitation);
-        return view('list_survey.index', compact('survey'));
+        return view('selesai_pemasangan.index', compact('finish'));
     }
 
     /**
@@ -35,8 +36,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $array = $request->all();
-        $survey = SurveyModel::create($array);
-        return redirect()->route('list_survey.index')->with('success_message', 'Berhasil Menambahkan List Survey Baru');
+        $survey = FinishModel::create($array);
+        return redirect()->route('selesai_pemasangan.index')->with('success_message', 'Berhasil atau Selesai Pemasangan');
     }
 
     /**
@@ -60,10 +61,10 @@ class SurveyController extends Controller
     {
         $users = User::all();
         $transaction_stock_id = Stock::all();
-        $survey = SurveyModel::find($id);
+        $finish = FinishModel::find($id);
 
-        if (!$survey) return redirect()->route('list_survey.index')->with('error_message', 'List survey dengan id' . $id . 'tidak ditemukan');
-        return view('list_survey.edit', compact('users','transaction_stock_id', 'survey'));
+        if (!$finish) return redirect()->route('selesai_pemasangan.index')->with('error_message', 'List pemasangan dengan id' . $id . 'tidak ditemukan');
+        return view('selesai_pemasangan.edit', compact('users','transaction_stock_id', 'finish'));
     }
 
     /**
@@ -73,17 +74,17 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FinishRequest $request, $id)
     {
-        $survey = SurveyModel::find($id);
-        $survey->users_id = $request->users_id;
-        $survey->transaction_stock_id; // nama produk
-        $survey->transaction_stock_id; // nama survey
-        $survey->address = $request->address;
-        $survey->status = $request->status;
+        $finish = FinishModel::find($id);
+        $finish->users_id = $request->users_id;
+        $finish->transaction_stock_id; // nama produk
+        $finish->transaction_stock_id; // nama finish
+        $finish->address = $request->address;
+        $finish->status = $request->status;
+        $finish->save();
 
-        $survey->save();
-        return redirect()->route('list_survey.index')->with('success_message', 'Berhasil Memperbarui List Survey');
+        return redirect()->route('selesai_pemasangan.index')->with('success_message', 'Berhasil Memperbarui List Pemasangan');
     }
 
     /**
@@ -94,9 +95,9 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        $survey = SurveyModel::find($id);
-        if ($survey) $survey->delete();
-        return redirect()->route('list_survey.index')->with('success_message', 'Berhasil Menghapus Survey');
+        $finish = FinishModel::find($id);
+        if ($finish) $finish->delete();
+        return redirect()->route('selesai_pemasangan.index')->with('success_message', 'Berhasil Menghapus List Pemasangan');
     }
 
 }

@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Stock extends Model
+class TransactionStock extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $table = 'stocks';
 
     protected $fillable = [
-        'name',
-        'price',
-        'qty'
+        'id',
+        'stock_id',
+        'transaction_id',
+        'qty',
+        'additional_price'
     ];
 
     public function product(){
@@ -26,11 +28,7 @@ class Stock extends Model
         return $this->hasMany(TransactionModel::class, 'id', 'transaction_stock_id');
     }
 
-    public function transactionStock(){
-        return $this->hasMany(TransactionStock::class, 'id', 'stock_id');
-    }
-
-    public function installitationControl(){
-        return $this->hasMany(InstallitationControlModel::class, 'id', 'transaction_stock_id');
+    public function stocks(){
+        return $this->belongsTo(Stock::class, 'stock_id', 'id');
     }
 }

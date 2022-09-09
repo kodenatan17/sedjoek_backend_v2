@@ -16,7 +16,7 @@
                         <select name="users_id" class="form-control @error('users_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
                             @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            <option value= "{{$user->id}}" {{ $user->id == $installitation->users_id ? 'selected' : '' }} >{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -25,7 +25,16 @@
                         <select name="transaction_stock_id" class="form-control @error('transaction_stock_id') is_invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
                             @foreach ($transaction_stock_id as $transaction)
-                                <option value="{{$transaction->id}}">{{$transaction->stock_id}}</option>
+                            <option value= "{{$transaction->id}}" {{ $transaction->id == $installitation->transaction_stock_id ? 'selected' : '' }} >{{$transaction->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Nama Teknisi</label>
+                        <select name="transaction" class="form-control @error('transaction') is-invalid @enderror" id="exampleInputName">
+                            <option disabled>-----</option>
+                            @foreach ($users as $user)
+                            <option value= "{{$user->id}}" {{ $user->id == $installitation->users_id ? 'selected' : '' }} >{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -48,11 +57,9 @@
                         <label for="exampleInputName">Status Transaksi</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" id="exampleInputName">
                             <option disabled>------</option>
-                            <option value="{{$installitation->status ?? old('status')}}">SHIPPED</option>
-                            <option value="{{$installitation->status ?? old('status')}}">SHIPPING</option>
-                            <option value="{{$installitation->status ?? old('status')}}">PROCESSING</option>
-                            <option value="{{$installitation->status ?? old('status')}}">PENDING</option>
-                            <option value="{{$installitation->status ?? old('status')}}">CANCEL</option>
+                            <option value="SURVEY" {{$installitation->status == 'SURVEY' ? 'selected' : ''}}>SURVEY</option>
+                            <option value="INSTALLATION" {{$installitation->status == 'INSTALLATION' ? 'selected' : ''}}>INSTALLATION</option>
+                            <option value="FINISH" {{$installitation->status == 'FINISH' ? 'selected' : ''}}>FINISH</option>
                         </select>
                         @error('status') <span class="text-danger">{{$message}}</span> @enderror
                     </div>

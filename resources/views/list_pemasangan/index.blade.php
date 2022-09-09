@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title','List Survey')
+@section('title','List Pemasangan')
 
 @section('content_header')
-<h1 class="m-0 text-dark">List Survey</h1>
+<h1 class="m-0 text-dark">List Pemasangan</h1>
 @stop
 
 @section('content')
@@ -24,29 +24,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($survey as $key => $survey )
-                            @if ($survey->status == "SURVEY")
+                        @foreach ($installation as $key => $installation )
+                            @if ($installation->status == "INSTALLATION")
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$survey->user->name}}</td>
-                                <td>{{$survey->transaction_stock_id}}</td> {{-- name produk --}}
-                                <td>{{$survey->transaction_stock_id}}</td> {{-- name teknisi --}}
-                                <td>{{$survey->address}}</td>
-                                <td>{{$survey->status}}</td>
+                                <td>{{$installation->user->name}}</td>
+                                <td>{{$installation->transaction_stock_id}}</td> {{-- name produk --}}
+                                <td>{{$installation->transaction_stock_id}}</td> {{-- name installation --}}
+                                <td>{{$installation->address}}</td>
+                                <td>{{$installation->status}}</td>
                                 <td>
                                     @if(Auth::user()->roles == "ADMIN")
-                                        <a href="{{route('list_survey.edit', $survey)}}" class="btn btn-primary btn-xs">
+                                        <a href="{{route('list_pemasangan.edit', $installation)}}" class="btn btn-primary btn-xs">
                                             Edit
                                         </a>
-                                        <a href="{{route('list_survey.destroy', $survey)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                        <a href="{{route('list_pemasangan.destroy', $installation)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                             Hapus
                                         </a>
                                     @endif
                                     @if(Auth::user()->roles == "USER")
-                                        <a href="{{route('list_survey.edit', $survey)}}" class="btn btn-primary btn-xs">
+                                        <a href="{{route('list_pemasangan.edit', $installation)}}" class="btn btn-primary btn-xs">
                                             Edit
                                         </a>
-                                        <a href="{{route('list_survey.destroy', $survey)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                        <a href="{{route('list_pemasangan.destroy', $installation)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                             Hapus
                                         </a>
                                     @endif

@@ -468,17 +468,17 @@ return [
                 ],
                 [
                     'text' => 'List Survey',
-                    'url'  => '#',
+                    'url'  => 'list_survey',
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
                     'text' => 'List Pemasangan',
-                    'url'  => '#',
+                    'url'  => 'list_pemasangan',
                     'icon' => 'fas fa-fw fa-inbox',
                 ],
                 [
                     'text' => 'Selesai Pemasangan',
-                    'url'  => '#',
+                    'url'  => 'selesai_pemasangan',
                     'icon' => 'fas fa-fw fa-check'
                 ],
             ],

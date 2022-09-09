@@ -6,6 +6,7 @@ use App\Http\Requests\InstallitationControlRequest;
 use App\Models\InstallitationControlModel;
 use App\Models\Stock;
 use App\Models\User;
+use App\Models\TransactionStock;
 use Illuminate\Http\Request;
 
 
@@ -13,7 +14,7 @@ class InstallitationControlController extends Controller
 {
     public function index()
     {
-        $installitation = InstallitationControlModel::with('user')->get();
+        $installitation = InstallitationControlModel::with('user', 'stocks', 'transactionStock')->get();
         // dd($installitation);
         return view('installitation_control.index', compact('installitation'));
     }
@@ -25,9 +26,7 @@ class InstallitationControlController extends Controller
      */
     public function create()
     {
-        // $users = User::all();
-        // $transaction_stock_id = Stock::all();
-        // return view('installitation_control.create', compact('users', 'transaction_stock_id'));
+        //
     }
 
     /**
@@ -38,9 +37,7 @@ class InstallitationControlController extends Controller
      */
     public function store(InstallitationControlRequest $request)
     {
-        $array = $request->only([
-            'photo_location' => 'image|file|max:1024'
-        ]);
+        $array = $request->all();
         if($request->file('photo_location')){
             $array['photo_location'] = $request->file('photo_location')->store('location-images');
         }
@@ -106,7 +103,7 @@ class InstallitationControlController extends Controller
         $installitation = InstallitationControlModel::find($id);
         // $installitation->name = $request->name;
         $installitation->users_id = $request->users_id;
-        $installitation->transaction_stock_id;
+        $installitation->transaction_stock_id = $request->transaction_stock_id;
         $installitation->address = $request->address;
         // $installitation->payment = $request->payment;
         $installitation->total_price = $request->total_price;
