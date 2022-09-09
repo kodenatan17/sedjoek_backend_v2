@@ -27,7 +27,7 @@ class InstallitationControlRequest extends FormRequest
         return [
             'users_id' => 'required|exists:users,id',
             'address' => 'required|max:255',
-            'status' => 'in:PENDING,SUCCESS,CANCELED,FAILED,SHIPPING,SHIPPED'            
+            'status' => 'in:PENDING,SUCCESS,CANCELED,FAILED,SHIPPING,SHIPPED',
         ];
     }
 }

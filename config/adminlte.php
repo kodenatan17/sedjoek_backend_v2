@@ -472,14 +472,19 @@ return [
                     'icon' => 'fas fa-fw fa-box',
                 ],
                 [
-                    'text' => 'List Pengiriman',
+                    'text' => 'List Survey',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-paper-plane',
+                    'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'List Penerimaan',
+                    'text' => 'List Pemasangan',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-inbox',
+                ],
+                [
+                    'text' => 'Selesai Pemasangan',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-check'
                 ],
             ],
         ],

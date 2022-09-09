@@ -1,21 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
- 
-use App\Http\Requests\InstallitationControlRequest;
-use App\Models\InstallitationControlModel;
-use App\Models\Stock;
-use App\Models\User;
+
+use App\Models\Survey;
 use Illuminate\Http\Request;
 
-
-class InstallitationControlController extends Controller
+class SurveyController extends Controller
 {
     public function index()
     {
-        $installitation = InstallitationControlModel::with('user')->get();
+        $survey = Survey::with('user')->get();
         // dd($installitation);
-        return view('installitation_control.index', compact('installitation'));
+        return view('list_survey.index', compact('survey'));
     }
 
     /**
@@ -25,9 +21,7 @@ class InstallitationControlController extends Controller
      */
     public function create()
     {
-        // $users = User::all();
-        // $transaction_stock_id = Stock::all();
-        // return view('installitation_control.create', compact('users', 'transaction_stock_id'));
+        // 
     }
 
     /**
@@ -36,7 +30,7 @@ class InstallitationControlController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(InstallitationControlRequest $request)
+    public function store(Request $request)
     {
         $array = $request->only([
             'photo_location' => 'image|file|max:1024'
@@ -163,5 +157,3 @@ class InstallitationControlController extends Controller
     }
 
 }
-
-
