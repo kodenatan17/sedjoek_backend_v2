@@ -30,7 +30,7 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     protected function authenticated(Request $request, $user)
     {
-        if (auth()->user()->roles == "") { // do your magic here
+        if (auth()->user()->roles == "USER") { // do your magic here
             return redirect('/404');
         }else{
             return redirect('/');

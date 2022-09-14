@@ -34,7 +34,6 @@
                                 <option disabled>------</option>
                                 <option value="SUPER ADMIN">SUPER ADMIN</option>
                                 <option value="ADMIN">ADMIN</option>
-                                <option value="SUPER ADMIN">SUPER ADMIN</option>
                                 <option value="MARKETING ADMIN">MARKETING</option>
                                 <option value="WAREHOUSE ADMIN">WAREHOUSE</option>
                                 <option value="TECHNICIAN ADMIN">TEKNISI</option>

@@ -16,6 +16,7 @@ use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\UserDetailController;
 use App\Http\Controllers\API\StockController;
+use App\Http\Controllers\API\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,4 +109,10 @@ Route::controller(GalleryController::class)->group(function () {
     Route::post('/gallerys/store', 'store');
     Route::put('/gallerys/update/{id}', 'update');
     Route::delete('/gallerys/delete/{id}', 'destroy');
+});
+
+//Technician API
+Route::controller(SurveyController::class)->group(function () {
+    Route::get('/surveys', 'index');
+    Route::put('/surveys/update/{id}', 'update');
 });

@@ -100,17 +100,17 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Deskripsi Survey</label>
-                        <input type="text" class="form-control @error('description_survey') is-invalid @enderror" id="exampleInputName" name="description_survey" placeholder="Keterangan Deskripsi Survey" name="description_survey" value="{{$installitation->description_survey ?? old('description_survey')}}">
+                        <textarea class="form-control @error('description_survey') is-invalid @enderror" id="exampleInputName" name="description_survey" placeholder="Keterangan Deskripsi Survey" name="description_survey" value="{{$installitation->description_survey ?? old('description_survey')}}"></textarea>
                         @error('description_survey') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Deskripsi Pemasangan</label>
-                        <input type="text" class="form-control @error('description_install') is-invalid @enderror" id="exampleInputName" name="description_install" placeholder="Keterangan Deskripsi Pemasangan" name="description_install" value="{{$installitation->description_install ?? old('description_install')}}">
+                        <textarea class="form-control @error('description_install') is-invalid @enderror" id="exampleInputName" name="description_install" placeholder="Keterangan Deskripsi Pemasangan" name="description_install" value="{{$installitation->description_install ?? old('description_install')}}"></textarea>
                         @error('description_install') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Deskripsi Akhir</label>
-                        <input type="text" class="form-control @error('description_finish') is-invalid @enderror" id="exampleInputName" name="description_finish" placeholder="Keterangan Deskripsi Akhir Penyelesaian" name="description_finish" value="{{$installitation->description_finish ?? old('description_finish')}}">
+                        <textarea class="form-control @error('description_finish') is-invalid @enderror" id="exampleInputName" name="description_finish" placeholder="Keterangan Deskripsi Akhir Penyelesaian" name="description_finish" value="{{$installitation->description_finish ?? old('description_finish')}}"></textarea>
                         @error('description_finish') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>

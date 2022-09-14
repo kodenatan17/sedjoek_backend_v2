@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleInputName">Nama Produk</label>
                             <select name="name_id" class="form-control @error('name_id') is-invalid @enderror" id="product" onchange="auto()">
                                 <option disabled>----- Nama Produk -----</option>
@@ -21,19 +21,27 @@
                             @error('categories_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="exampleInputName">Nama Produk</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                placeholder="Nama Produk" name="name" value="{{ old('name') }}" rows="4">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName">Harga Produk</label>
-                            <input class="form-control @error('price') is-invalid @enderror" id="price"
-                                placeholder="Harga Produk" name="price" value="{{ old('price') }}" rows="4" readonly>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                                placeholder="Harga Produk" name="price" value="{{ old('price') }}" rows="4">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName">Stok</label>
-                            <input class="form-control @error('stock') is-invalid @enderror" id="stock"
-                                placeholder="Stok" name="stock" value="{{ old('stock') }}" rows="4" readonly>
+                            <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock"
+                                placeholder="Stok" name="stock" value="{{ old('stock') }}" rows="4">
                             @error('stock')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -75,10 +83,21 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputName">Tipe</label>
+                            <select name="type" class="form-control @error('type') is-invalid @enderror" id="exampleInputName">
+                                <option disabled>------</option>
+                                <option value="AC">AC</option>
+                                <option value="PIPE">Pipa</option>
+                                <option value="CABLE">Kabel</option>
+                                <option value="TOOLS">Alat - Alat</option>
+                            </select>
+                            @error('type') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputName">Deskripsi Product</label>
-                            <input class="form-control @error('description') is-invalid @enderror" id="exampleInputName"
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="exampleInputName"
                                 placeholder="Deskripsi Produk" name="description" value="{{ old('description') }}"
-                                rows="4">
+                                rows="4"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

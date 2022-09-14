@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Requests\ProductRequest;
 use App\Models\BrandModel;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use DataTables;
 use App\Item;
+use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 
 class ProductController extends Controller
 {
@@ -19,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = ProductModel::with('category','brand', 'stocks')->get();
+        $products = ProductModel::with('category','brand')->get();
         return view('products.index', compact('products'));
     }
 
@@ -33,8 +36,7 @@ class ProductController extends Controller
         $product = ProductModel::all();
         $categories = CategoryModel::all();
         $brand = BrandModel::all();
-        $stock = Stock::all();
-        return view('products.create', compact('categories', 'brand', 'stock', 'product'));
+        return view('products.create', compact('categories', 'brand', 'product'));
     }
 
     /**
@@ -72,9 +74,8 @@ class ProductController extends Controller
         $product = ProductModel::find($id);
         $brand = BrandModel::all();
         $categories = CategoryModel::all();
-        $stock = Stock::all();
         if (!$product) return redirect()->route('products.index')->with('error_message', 'Product dengan id' . $id . 'tidak ditemukan');
-        return view('products.edit', compact('brand', 'categories', 'product', 'stock'));
+        return view('products.edit', compact('brand', 'categories', 'product'));
     }
 
     /**
@@ -94,6 +95,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->tags = $request->tags;
         $product->stock = $request->stock;
+        $product->type = $request->type;
         $product->save();
         return redirect()->route('products.index')->with('success_message', 'Berhasil mengubah Product');
     }
@@ -117,21 +119,40 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
-    // public function autocomplete(Request $request)
-    // {
-    //     $data = Item::select("name")
-    //             ->where("name","LIKE","%{$request->input('query')}%")
-    //             ->get();
+    public function reportForm()
+    {
+        $products = ProductModel::with('category','brand', 'stocks')->get();
+        return view('products.report', compact('products'));
+    }
 
-    //     return response()->json($data);
-    // }
+    public function report(Request $request)
+    {
+        if ($request->ajax()) {
+            // $model = ProductModel::with('stocks');
+            //     return Datatables::eloquent($model)
+            //     ->addColumn('users', function (ProductModel $product) {
+            //         return $product->stocks->name;
+            //     })
+            //     ->toJson();
+            if ($request->input('start_date') && $request->input('end_date')) {
 
-    // public function autocomplete($id)
-    // {
-    //     $dt = ProductModel::where('id',$id)->first();
+                $start_date = Carbon::parse($request->input('start_date'));
+                $end_date = Carbon::parse($request->input('end_date'));
 
-    //     return response()->json([
-    //         'data'=>$dt
-    //     ]);
-    // }
+                if ($end_date->greaterThan($start_date)) {
+                    $products = ProductModel::with('category','brand')->whereBetween('created_at', [$start_date, $end_date])->get();
+                } else {
+                    $products = ProductModel::latest()->get();
+                }
+            } else {
+                $products = ProductModel::latest()->get();
+            }
+
+            return response()->json([
+                'products' => $products
+            ]);
+        } else {
+            abort(403);
+        }
+    }
 }

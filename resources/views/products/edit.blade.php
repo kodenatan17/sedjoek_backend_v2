@@ -12,25 +12,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputName">Nama Produk</label>
-                        <select name="name_id" class="form-control @error('name_id') is-invalid @enderror" id="product" onchange="auto()">
-                            <option disabled>----- Nama Produk -----</option>
-                            @foreach ($stock as $stock)
-                                <option value="{{ $stock->id }}">{{ $stock->name_id }}</option>
-                            @endforeach
-                        </select>
-                        @error('categories_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <label for="exampleInputName">Nama Product</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Produk" name="name" value="{{$product->name ?? old('name')}}">
+                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Harga Product</label>
-                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Harga Produk" name="price" value="{{$product->price ?? old('price')}}" readonly>
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" placeholder="Harga Produk" name="price" value="{{$product->price ?? old('price')}}">
                         @error('price') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Stok</label>
-                        <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Harga Produk" name="stock" value="{{$product->stock ?? old('stock')}}" readonly>
+                        <input type="number" class="form-control @error('stock') is-invalid @enderror" placeholder="Harga Produk" name="stock" value="{{$product->stock ?? old('stock')}}">
                         @error('stock') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -64,8 +57,22 @@
                         @error('tags') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputName">Tipe</label>
+                        <select name="type" class="form-control @error('type') is-invalid @enderror"
+                            id="exampleInputName">
+                            <option disabled>------</option>
+                            <option value="AC" {{ $product->type == 'AC' ? 'selected' : '' }}>AC</option>
+                            <option value="PIPE" {{ $product->type == 'PIPE' ? 'selected' : '' }}>Pipe</option>
+                            <option value="CABLE" {{ $product->type == 'CABLE' ? 'selected' : '' }}>Kabel</option>
+                            <option value="TOOLS" {{ $product->type == 'TOOLS' ? 'selected' : '' }}>Alat - Alat</option>
+                        </select>
+                        @error('type')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputName">Deskripsi</label>
-                        <input class="form-control @error('description') is-invalid @enderror" id="exampleInputName" placeholder="Deskripsi Produk" name="description" value="{{$product->description ?? old('description')}}" rows="4">
+                        <textarea class="form-control @error('description') is-invalid @enderror" id="exampleInputName" placeholder="Deskripsi Produk" name="description" rows="4">{{$product->description ?? old('description')}}</textarea>
                         @error('description') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>

@@ -195,6 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        //datalain
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -210,7 +212,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-
+         //datalain
         // 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),

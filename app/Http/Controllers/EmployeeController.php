@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -109,4 +110,42 @@ class EmployeeController extends Controller
         if ($employee) $employee->delete();
         return redirect()->route('employees.index')->with('success_message', 'Berhasil menghapus artikel');
     }
+
+    public function reportForm()
+    {
+        return view('employees.report');
+    }
+
+    // public function reportForm($startDate, $endDate)
+    // {
+    //     dd(["Tanggal Awal : ".$startDate, "Tanggal Akhir : ".$endDate]);
+    //     $employee = Employee::whereBetween('created_at', [$startDate, $endDate])->get();
+    //     return view('employees.report-form', compact('employee'));
+    // }
+    public function report(Request $request)
+    {
+        if ($request->ajax()) {
+
+            if ($request->input('start_date') && $request->input('end_date')) {
+
+                $start_date = Carbon::parse($request->input('start_date'));
+                $end_date = Carbon::parse($request->input('end_date'));
+
+                if ($end_date->greaterThan($start_date)) {
+                    $employees = Employee::whereBetween('created_at', [$start_date, $end_date])->get();
+                } else {
+                    $employees = Employee::latest()->get();
+                }
+            } else {
+                $employees = Employee::latest()->get();
+            }
+
+            return response()->json([
+                'employees' => $employees
+            ]);
+        } else {
+            abort(403);
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ class TransactionStock extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'stocks';
+    protected $table = 'transaction_stock';
 
     protected $fillable = [
         'id',

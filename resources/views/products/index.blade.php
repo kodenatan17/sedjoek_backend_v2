@@ -25,6 +25,7 @@
                             <th>Tags</th>
                             <th>Kategori</th>
                             <th>Brand</th>
+                            <th>Tipe</th>
                             <th>Option</th>
                         </tr>
                     </thead>
@@ -32,13 +33,14 @@
                         @foreach ($products as $key => $product )
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$product->stocks->name}}</td>
+                            <td>{{$product->name}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->stock}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->tags}}</td>
                             <td>{{$product->category['name']}}</td>
                             <td>{{$product->brand['name']}}</td>
+                            <td>{{$product->type}}</td>
                             <td>
                                 <a href="{{route('products.edit', $product)}}" class="btn btn-primary btn-xs">
                                     Edit

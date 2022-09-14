@@ -14,10 +14,14 @@ class SurveyModel extends Model
     protected $table = 'transactions';
 
     protected $fillable = [
-        'name', 'users_id', 'address', 'status'
+        'transaction_stock_id', 'users_id', 'address', 'status'
     ];
-    
+
     public function user(){
         return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function transactionStock(){
+        return $this->belongsTo(TransactionStock::class, 'transaction_stock_id', 'id');
     }
 }

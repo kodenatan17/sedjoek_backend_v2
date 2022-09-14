@@ -7,11 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\EventController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\ProductController;
->>>>>>> 2e63562b46b3a21dc2986d8214395859b9ef7921
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\BannerController;
@@ -48,7 +44,7 @@ use App\Http\Controllers\InstallitationControlController;
 
 Auth::routes();
 
-Route::middleware('auth', 'roles:ADMIN')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('articles', ArticleController::class);
     Route::resource('brands', BrandController::class);
@@ -69,16 +65,19 @@ Route::middleware('auth', 'roles:ADMIN')->group(function () {
     Route::resource('stocks', StockController::class);
     Route::resource('installitation_control', InstallitationControlController::class);
     Route::resource('employees', EmployeeController::class);
-<<<<<<< HEAD
     Route::resource('list_survey', SurveyController::class);
     Route::resource('list_pemasangan', InstallationController::class);
     Route::resource('selesai_pemasangan', FinishController::class);
-=======
     Route::resource('gallerys', GalleryController::class);
->>>>>>> 2e63562b46b3a21dc2986d8214395859b9ef7921
+    Route::get('employees-report', [EmployeeController::class, 'reportForm']);
+    Route::get('employee/report', [EmployeeController::class, 'report'])->name('employees/report');
+    Route::get('products-report', [ProductController::class, 'reportForm']);
+    Route::get('product/report', [ProductController::class, 'report'])->name('products/report');
+    Route::get('stocks-report', [StockController::class, 'reportForm']);
+    Route::get('stock/report', [StockController::class, 'report'])->name('stocks/report');
 });
 
-Route::middleware('auth', 'roles:')->group(function () {
+Route::middleware('auth', 'roles:USER')->group(function () {
     Route::get('/404', [NotFoundController::class, 'index'])->name('notfound');
 });
 //super admin

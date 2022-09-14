@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 
@@ -99,5 +100,36 @@ class StockController extends Controller
        if ($stocks) $stocks ->delete();
        return redirect()->route('stocks.index')->with('success_message', 'Berhasil menghapus artikel');
    }
+
+   public function reportForm()
+    {
+        return view('stocks.report');
+    }
+
+    public function report(Request $request)
+    {
+        if ($request->ajax()) {
+
+            if ($request->input('start_date') && $request->input('end_date')) {
+
+                $start_date = Carbon::parse($request->input('start_date'));
+                $end_date = Carbon::parse($request->input('end_date'));
+
+                if ($end_date->greaterThan($start_date)) {
+                    $stocks = Stock::whereBetween('created_at', [$start_date, $end_date])->get();
+                } else {
+                    $stocks = Stock::latest()->get();
+                }
+            } else {
+                $stocks = Stock::latest()->get();
+            }
+
+            return response()->json([
+                'stocks' => $stocks
+            ]);
+        } else {
+            abort(403);
+        }
+    }
 
 }

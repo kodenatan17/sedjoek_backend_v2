@@ -488,6 +488,33 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Database Report',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Laporan Barang',
+                    'url'  => 'products-report',
+                    'icon' => 'fas fa-fw fa-inbox',
+                ],
+                [
+                    'text' => 'Laporan Stok',
+                    'url'  => 'stocks-report',
+                    'icon' => 'fas fa-fw fa-inbox',
+                ],
+                [
+                    'text' => 'Laporan Teknisi',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-inbox',
+                ],
+                [
+                    'text' => 'Laporan Karywanan',
+                    'url'  => 'employees-report',
+                    'icon' => 'fas fa-fw fa-inbox'
+                ],
+            ],
+        ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',
