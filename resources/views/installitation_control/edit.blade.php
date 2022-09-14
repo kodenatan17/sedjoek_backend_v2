@@ -24,17 +24,17 @@
                         <label for="exampleInputName">Nama Produk</label>
                         <select name="transaction_stock_id" class="form-control @error('transaction_stock_id') is_invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
-                            @foreach ($transaction_stock_id as $transaction)
-                            <option value= "{{$transaction->id}}" {{ $transaction->id == $installitation->transaction_stock_id ? 'selected' : '' }} >{{$transaction->name}}</option>
+                            @foreach ($transaction_stock as $transaction)
+                            <option value= "{{$transaction->id}}" {{ $transaction->id == $installitation->transaction_stock_id ? 'selected' : '' }} >{{$transaction->stocks->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Nama Teknisi</label>
-                        <select name="transaction" class="form-control @error('transaction') is-invalid @enderror" id="exampleInputName">
+                        <select name="technician_users_id" class="form-control @error('technician_users_id') is-invalid @enderror" id="exampleInputName">
                             <option disabled>-----</option>
-                            @foreach ($users as $user)
-                            <option value= "{{$user->id}}" {{ $user->id == $installitation->users_id ? 'selected' : '' }} >{{$user->name}}</option>
+                            @foreach ($technician_users as $technician)
+                            <option value= "{{$technician->id}}" {{ $technician->id == $installitation->technician_users_id ? 'selected' : ''}} ><td>{{$technician->technician_users->name}} </option>
                             @endforeach
                         </select>
                     </div>

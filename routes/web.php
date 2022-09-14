@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth', 'roles:USER')->group(function () {
     Route::get('/404', [NotFoundController::class, 'index'])->name('notfound');
+
 });
 //super admin
 // Route::middleware('auth','roles:ADMIN')->group(function(){

@@ -16,6 +16,7 @@ class InstallitationControlModel extends Model
         'name', 
         'users_id', 
         'transaction_stock_id', 
+        'technician_user_id',
         'address', 
         'payment',
         'total_price', 
@@ -37,11 +38,26 @@ class InstallitationControlModel extends Model
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
+    public function installitationControl()
+    {
+        return $this->hasMany(InstallitationControlModel::class, 'transaction_stock_id');
+    }
+
     public function stocks(){
         return $this->belongsTo(Stock::class, 'transaction_stock_id', 'id');
     }
 
-    public function transactionStock(){
-        return $this->belongsTo(TransactionStock::class, 'transaction_stock_id', 'id');
+    // public function transaction_stock(){
+    //     return $this->belongsTo(Stock::class, 'transaction_stock_id', 'id');
+    // }
+
+    public function technicians(){
+        return $this->belongsTo(Technician::class, 'technician_user_id');
     }
+
+    public function transaction_stocks()
+    {
+        return $this->belongsTo(TransactionStock::class, 'transaction_stock_id');
+    }
+
 }

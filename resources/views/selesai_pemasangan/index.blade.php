@@ -19,8 +19,18 @@
                             <th>Nama Produk</th>
                             <th>Nama Teknisi</th>
                             <th>Alamat</th>
+                            <th>Total Harga</th>
+                            <th>Harga Pengiriman</th>
                             <th>Status</th>
-                            <th>Option</th>
+                            <th>Pembayaran</th>
+                            <th>Foto Lokasi</th>
+                            <th>Foto Pemasangan</th>
+                            <th>Foto Barang</th>
+                            <th>Foto Dalam Ruangan</th>
+                            <th>Foto Luar Ruangan</th>
+                            <th>Foto AC Menyala</th>
+                            <th>Foto Pipa Terpakai</th>
+                            <th>Deskripsi Akhir</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,23 +43,17 @@
                                 <td>{{$finish->transaction_stock_id}}</td> {{-- name FINISH --}}
                                 <td>{{$finish->address}}</td>
                                 <td>{{$finish->status}}</td>
-                                <td>
-                                    @if(Auth::user()->roles == "ADMIN")
-                                        <a href="{{route('selesai_pemasangan.edit', $finish)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('selesai_pemasangan.destroy', $finish)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
-                                    @if(Auth::user()->roles == "USER")
-                                        <a href="{{route('selesai_pemasangan.edit', $finish)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('selesai_pemasangan.destroy', $finish)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
+                                <td>{{$finish->payment}}</td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_location) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_point_installation) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_unit) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_indoor_installation) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_outdoor_installation) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_ac_on) }}" alt="" width="100px"></div></td>
+                                <td><div style="max-height: 100px; overflow:hidden;"><img src =" {{ asset('storage/' . $finish->photo_pipe_used) }}" alt="" width="100px"></div></td>
+                                <td>{{$finish->description_survey}}</td>
+                                <td>{{$finish->description_install}}</td>
+                                <td>{{$finish->description_finish}}</td>
                                 </td>
                             </tr>
                             @endif

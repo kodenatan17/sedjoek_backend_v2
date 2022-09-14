@@ -20,7 +20,10 @@
                             <th>Nama Teknisi</th>
                             <th>Alamat</th>
                             <th>Status</th>
-                            <th>Option</th>
+                            <th>Foto Lokasi</th>
+                            <th>Foto Dalam Ruangan</th>
+                            <th>Foto Luar Ruangan</th>
+                            <th>Deskripsi Survey</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,28 +32,14 @@
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{$survey->user->name}}</td>
-                                <td>{{$survey->transaction_stock_id}}</td> {{-- name produk --}}
-                                <td>{{$survey->transaction_stock_id}}</td> {{-- name teknisi --}}
+                                <td>{{$survey->transaction_stocks->stocks->name ?? '_'}}</td>
+                                <td>{{$survey->technicians->technician_users->name ?? '_'}}</td>
                                 <td>{{$survey->address}}</td>
                                 <td>{{$survey->status}}</td>
-                                <td>
-                                    @if(Auth::user()->roles == "ADMIN")
-                                        <a href="{{route('list_survey.edit', $survey)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('list_survey.destroy', $survey)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
-                                    @if(Auth::user()->roles == "USER")
-                                        <a href="{{route('list_survey.edit', $survey)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('list_survey.destroy', $survey)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
-                                </td>
+                                <td>{{$survey->photo_location}}</td>
+                                <td>{{$survey->photo_indoor_installation}}</td>
+                                <td>{{$survey->photo_outdoor_installation}}</td>
+                                <td>{{$survey->description_survey}}</td>
                             </tr>
                             @endif
                         @endforeach

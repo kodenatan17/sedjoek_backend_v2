@@ -13,7 +13,6 @@ class TransactionStock extends Model
     protected $table = 'transaction_stock';
 
     protected $fillable = [
-        'id',
         'stock_id',
         'transaction_id',
         'qty',
@@ -25,10 +24,20 @@ class TransactionStock extends Model
     }
 
     public function transaction(){
-        return $this->hasMany(TransactionModel::class, 'id', 'transaction_stock_id');
+        return $this->hasMany(TransactionModel::class, 'id', 'transaction_id');
+    }
+
+    public function installitationControl()
+    {
+        return $this->hasMany(InstallitationControlModel::class, 'id', 'transaction_id');
+    }
+
+    public function transaction_stock()
+    {
+        return $this->belongsTo(Stock::class, 'id', 'stock_id');
     }
 
     public function stocks(){
-        return $this->belongsTo(Stock::class, 'stock_id', 'id');
+        return $this->belongsTo(Stock::class, 'stock_id');
     }
 }
