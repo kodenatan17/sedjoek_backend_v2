@@ -41,9 +41,8 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>{{$installitation->user->name}}</td>
-                            <td>{{$installitation->transaction_stock_id !== null ? $installitation->stocks->name : '-' }}</td>
-                            <td>{{$installitation->technician->name}}</td>
-                            {{-- <td>{{$installitation->technician_users_id !== null ? $installitation->transactionStock->name : '-' }}</td> --}}
+                            <td>{{$installitation->transaction_stocks->stocks->name ?? '_'}}</td>
+                            <td>{{$installitation->technicians->technician_users->name ?? '_'}}</td>
                             <td>{{$installitation->address}}</td>
                             <td>{{$installitation->total_price}}</td>
                             <td>{{$installitation->shipping_price}}</td>
@@ -60,7 +59,7 @@
                             <td>{{$installitation->description_install}}</td>
                             <td>{{$installitation->description_finish}}</td>
                             <td>
-                                @if(Auth::user()->roles == "ADMIN")
+                                @if(Auth::user()->roles == "SUPER ADMIN")
                                     <a href="{{route('installitation_control.edit', $installitation)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
@@ -68,7 +67,7 @@
                                         Hapus
                                     </a>
                                 @endif
-                                @if(Auth::user()->roles == "USER")
+                                @if(Auth::user()->roles == "ADMIN")
                                     <a href="{{route('installitation_control.edit', $installitation)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>

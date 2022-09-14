@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InstallitationControlRequest;
 use App\Models\InstallitationControlModel;
 use App\Models\Stock;
+use App\Models\Technician;
 use App\Models\User;
 use App\Models\TransactionStock;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class InstallitationControlController extends Controller
 {
     public function index()
     {
-        $installitation = InstallitationControlModel::with('user', 'stocks', 'transactionStock')->get();
+        $installitation = InstallitationControlModel::with('user', 'stocks', 'transaction_stocks', 'technicians')->get();
         // dd($installitation);
         return view('installitation_control.index', compact('installitation'));
     }
@@ -83,12 +84,13 @@ class InstallitationControlController extends Controller
      */
     public function edit($id)
     {
-        $users = User::all();
-        $transaction_stock_id = Stock::all();
         $installitation = InstallitationControlModel::find($id);
+        $users = User::all();
+        $transaction_stock = TransactionStock::all();
+        $technician_users = Technician::all();
 
         if (!$installitation) return redirect()->route('installitation_control.index')->with('error_message', 'Pemasangan dengan id' . $id . 'tidak ditemukan');
-        return view('installitation_control.edit', compact('users', 'installitation', 'transaction_stock_id'));
+        return view('installitation_control.edit', compact('users', 'installitation', 'transaction_stock', 'technician_users'));
     }
 
     /**
@@ -104,6 +106,7 @@ class InstallitationControlController extends Controller
         // $installitation->name = $request->name;
         $installitation->users_id = $request->users_id;
         $installitation->transaction_stock_id = $request->transaction_stock_id;
+        $installitation->technician_user_id = $request->technician_user_id;
         $installitation->address = $request->address;
         // $installitation->payment = $request->payment;
         $installitation->total_price = $request->total_price;
@@ -141,6 +144,7 @@ class InstallitationControlController extends Controller
         if($request->file('photo_pipe_used')){
             $installitation['photo_pipe_used'] = $request->file('photo_pipe_used')->store('pipe_used-images');
         }
+        // dd($installitation);
 
         $installitation->save();
         return redirect()->route('installitation_control.index')->with('success_message', 'Berhasil Memperbarui Pemasangan');

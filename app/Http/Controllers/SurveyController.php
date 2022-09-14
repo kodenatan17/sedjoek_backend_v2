@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Stock;
 use App\Models\SurveyModel;
+use App\Models\Technician;
+use App\Models\TransactionStock;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
     public function index()
     {
-        $survey = SurveyModel::all();
-        // dd($installitation);
+        $survey = SurveyModel::with('user', 'transaction_stocks', 'technicians')->get();
+        // dd($survey);
         return view('list_survey.index', compact('survey'));
     }
 
@@ -58,12 +60,13 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
-        $users = User::all();
-        $transaction_stock_id = Stock::all();
         $survey = SurveyModel::find($id);
+        $users = User::all();
+        $transaction_stocks = TransactionStock::all();
+        $technician_users = Technician::all();
 
         if (!$survey) return redirect()->route('list_survey.index')->with('error_message', 'List survey dengan id' . $id . 'tidak ditemukan');
-        return view('list_survey.edit', compact('users','transaction_stock_id', 'survey'));
+        return view('list_survey.edit', compact('users','transaction_stocks', 'survey', 'technician_users'));
     }
 
     /**

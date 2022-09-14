@@ -20,7 +20,11 @@
                             <th>Nama Teknisi</th>
                             <th>Alamat</th>
                             <th>Status</th>
-                            <th>Option</th>
+                            <th>Foto Pemasangan</th>
+                            <th>Foto Barang</th>
+                            <th>Foto AC Menyala</th>
+                            <th>Foto Pipa Terpakai</th>
+                            <th>Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,24 +37,11 @@
                                 <td>{{$installation->transaction_stock_id}}</td> {{-- name installation --}}
                                 <td>{{$installation->address}}</td>
                                 <td>{{$installation->status}}</td>
-                                <td>
-                                    @if(Auth::user()->roles == "ADMIN")
-                                        <a href="{{route('list_pemasangan.edit', $installation)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('list_pemasangan.destroy', $installation)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
-                                    @if(Auth::user()->roles == "USER")
-                                        <a href="{{route('list_pemasangan.edit', $installation)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('list_pemasangan.destroy', $installation)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Hapus
-                                        </a>
-                                    @endif
-                                </td>
+                                <td>{{$installation->photo_point_installation}}</td>
+                                <th>{{$installation->photo_unit}}</th>
+                                <th>{{$installation->photo_ac_on}}</th>
+                                <th>{{$installation->photo_pipe_used}}</th>
+                                <th>{{$installation->description_install}}</th>
                             </tr>
                             @endif
                         @endforeach
