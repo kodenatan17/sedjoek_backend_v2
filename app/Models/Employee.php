@@ -30,6 +30,6 @@ class Employee extends Model
         'join_date'
     ];
     public function user(){
-        return $this->hasMany(User::class, 'employee_id' , 'id');
+        return $this->hasMany(User::class, 'employee_id' , 'nik');
     }
 }

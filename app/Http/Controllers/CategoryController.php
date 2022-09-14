@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $array = $request->only([
             'name',
         ]);
-        $category = CategoryModel::create($array);
+        CategoryModel::create($array);
         return redirect()->route('categories.index')->with('success_message', 'Berhasil Menambahkan Category Baru');
     }
 

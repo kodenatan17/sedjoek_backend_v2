@@ -52,7 +52,18 @@ class CouponController extends Controller
             'expiry_date' => 'reuired',
             'status' => 'required'
         ]);
-        $coupon = CouponModel::create($array);
+
+        CouponModel::create([
+            'coupon_option' => $request->coupon_option,
+            'coupon_code'   => $request->coupon_code,
+            'categories'    => $request->categories,
+            'users'         => $request->users,
+            'coupon_type'   => $request->coupon_type,
+            'amount_type'   => $request->amount_type,
+            'amount'        => $request->amount,
+            'expiry_date'   => $request->expiry_date,
+            'status'        => $request->status,
+        ]);
         return redirect()->route('coupons.index')->with('success_message', 'Berhasil menambahkan coupon Baru');
     }
 

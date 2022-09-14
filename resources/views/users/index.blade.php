@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @if(Auth::user()->roles == "ADMIN")
+                    @if(Auth::user()->roles == "SUPER ADMIN")
                         <a href="{{route('users.create')}}" class="btn btn-primary mb-2">
                             Tambah
                         </a>
@@ -24,7 +24,7 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Roles</th>
-                            @if(Auth::user()->roles == "ADMIN")
+                            @if(Auth::user()->roles == "SUPER ADMIN")
                                 <th>Option</th>
                             @endif
                         </tr>
@@ -33,11 +33,11 @@
                         @foreach($users as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$user->employee_id !== null ? $user->employee->nik : '-' }}</td>
+                                <td>{{$user->employee->nik ?? '-' }}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->roles !== null ? $user->roles : 'USER'}}</td>
-                                @if(Auth::user()->roles == "ADMIN")
+                                <td>{{$user->roles ?? 'USER'}}</td>
+                                @if(Auth::user()->roles == "SUPER ADMIN")
                                     <td>
                                         <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">
                                             Edit

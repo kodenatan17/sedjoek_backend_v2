@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @if(Auth::user()->roles == "ADMIN")
+                @if(Auth::user()->roles == "SUPER ADMIN")
                     <a href="{{route('transactions.create')}}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
@@ -45,7 +45,7 @@
                             <td>{{$transaction->status}}</td>
                             <td>{{$transaction->payment}}</td>
                             <td>
-                                @if(Auth::user()->roles == "ADMIN")
+                                @if(Auth::user()->roles == "SUPER ADMIN")
                                     <a href="{{route('transactions.edit', $transaction)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>

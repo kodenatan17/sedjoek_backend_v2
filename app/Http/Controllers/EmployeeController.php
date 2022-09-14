@@ -30,7 +30,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $user = User::all();
+        $user = Employee::all();
         return view('employees.create', compact('user'));
     }
 
@@ -42,7 +42,8 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $array = $request->only([
+        // dd($request);
+        $this->validate($request, [
             'nik' => 'required|unique',
             'name' => 'required',
             'jobs' => 'required',
@@ -50,7 +51,15 @@ class EmployeeController extends Controller
             'address' => 'required',
             'join_date' => 'required'
         ]);
-        $employee = Employee::create($array);
+
+        Employee::create([
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'jobs' => $request->jobs,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'join_date' => $request->join_date
+        ]);
         return redirect()->route('employees.index')->with('success_message', 'Berhasil Menambahkan Article Baru');
     }
 
